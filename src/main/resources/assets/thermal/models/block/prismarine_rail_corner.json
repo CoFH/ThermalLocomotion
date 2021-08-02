@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_curved",
+  "textures": {
+    "rail": "thermal:block/rails/prismarine_rail_corner"
+  }
+}

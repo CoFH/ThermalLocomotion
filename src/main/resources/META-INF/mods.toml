@@ -1,0 +1,45 @@
+modLoader = "javafml"
+loaderVersion = "[34,)"
+issueTrackerURL = "https://github.com/cofh/feedback"
+license = "CoFH - Don't Be A Jerk (Learn, Don't Steal)"
+
+[[mods]]
+modId = "thermal_locomotion"
+version = "${file.jarVersion}"
+displayName = "Thermal Locomotion"
+displayURL = "https://teamcofh.com/"
+logoFile = "thermal_locomotion.png"
+credits = "Team CoFH"
+authors = "King Lemming"
+description = '''
+Thermal hits the tracks!
+
+Contains the "railyard" of the Thermal Series - Rails and Minecarts to expand rail-centric gameplay.
+'''
+[[dependencies.thermal_locomotion]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.16.5,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.thermal_locomotion]]
+modId = "forge"
+mandatory = true
+versionRange = "[36.2.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.thermal_locomotion]]
+modId = "cofh_core"
+mandatory = true
+versionRange = "[1.3,1.4]"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.thermal_locomotion]]
+modId = "thermal"
+mandatory = true
+versionRange = "[1.3,1.4]"
+ordering = "AFTER"
+side = "BOTH"

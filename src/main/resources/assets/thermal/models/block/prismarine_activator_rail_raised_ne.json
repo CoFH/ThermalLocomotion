@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_rail_raised_ne",
+  "textures": {
+    "rail": "thermal:block/rails/prismarine_activator_rail"
+  }
+}

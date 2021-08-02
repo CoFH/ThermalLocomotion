@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/rail_flat",
+  "textures": {
+    "rail": "thermal:block/rails/prismarine_activator_rail"
+  }
+}

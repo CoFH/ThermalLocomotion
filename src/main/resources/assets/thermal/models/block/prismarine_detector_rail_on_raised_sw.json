@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_rail_raised_sw",
+  "textures": {
+    "rail": "thermal:block/rails/prismarine_detector_rail_on"
+  }
+}

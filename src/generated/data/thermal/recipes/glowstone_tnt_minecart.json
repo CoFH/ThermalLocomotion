@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "key": {
+    "A": {
+      "item": "thermal:glowstone_tnt"
+    },
+    "B": {
+      "item": "minecraft:minecart"
+    }
+  },
+  "result": {
+    "item": "thermal:glowstone_tnt_minecart"
+  },
+  "conditions": [
+    {
+      "flag": "basic_explosives",
+      "type": "thermal:flag"
+    }
+  ]
+}

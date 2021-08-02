@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "B"
+  ],
+  "key": {
+    "A": {
+      "item": "thermal:slime_tnt"
+    },
+    "B": {
+      "item": "minecraft:minecart"
+    }
+  },
+  "result": {
+    "item": "thermal:slime_tnt_minecart"
+  },
+  "conditions": [
+    {
+      "flag": "basic_explosives",
+      "type": "thermal:flag"
+    }
+  ]
+}
