@@ -15,7 +15,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.TCoreIDs.ID_ICE_TNT;
+import static cofh.thermal.lib.common.ThermalIDs.ID_ICE_TNT;
 import static cofh.thermal.lib.common.ThermalConfig.permanentLava;
 import static cofh.thermal.lib.common.ThermalConfig.permanentWater;
 import static cofh.thermal.locomotion.init.TLocReferences.ICE_TNT_CART_ENTITY;

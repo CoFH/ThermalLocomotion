@@ -15,7 +15,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.TCoreIDs.ID_GLOWSTONE_TNT;
+import static cofh.thermal.lib.common.ThermalIDs.ID_GLOWSTONE_TNT;
 import static cofh.thermal.locomotion.init.TLocReferences.GLOWSTONE_TNT_CART_ENTITY;
 import static cofh.thermal.locomotion.init.TLocReferences.GLOWSTONE_TNT_CART_ITEM;
 
