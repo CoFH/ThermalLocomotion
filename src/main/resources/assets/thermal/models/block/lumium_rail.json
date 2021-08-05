@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/rail_flat",
   "textures": {
-    "rail": "thermal:block/rails/lumium_rail"
+    "rail": "thermal:block/lumium_rail"
   }
 }

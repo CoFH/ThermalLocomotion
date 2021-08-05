@@ -22,21 +22,21 @@ public class TLocItemModelProvider extends ItemModelProviderCoFH {
 
         DeferredRegisterCoFH<Item> reg = ITEMS;
 
-        generated(reg.getSup(ID_UNDERWATER_CART), MINECARTS);
+        generated(reg.getSup(ID_UNDERWATER_CART));
 
-        generated(reg.getSup(ID_SLIME_TNT_CART), MINECARTS);
-        generated(reg.getSup(ID_REDSTONE_TNT_CART), MINECARTS);
-        generated(reg.getSup(ID_GLOWSTONE_TNT_CART), MINECARTS);
-        generated(reg.getSup(ID_ENDER_TNT_CART), MINECARTS);
+        generated(reg.getSup(ID_SLIME_TNT_CART));
+        generated(reg.getSup(ID_REDSTONE_TNT_CART));
+        generated(reg.getSup(ID_GLOWSTONE_TNT_CART));
+        generated(reg.getSup(ID_ENDER_TNT_CART));
 
-        generated(reg.getSup(ID_PHYTO_TNT_CART), MINECARTS);
+        generated(reg.getSup(ID_PHYTO_TNT_CART));
 
-        generated(reg.getSup(ID_FIRE_TNT_CART), MINECARTS);
-        generated(reg.getSup(ID_EARTH_TNT_CART), MINECARTS);
-        generated(reg.getSup(ID_ICE_TNT_CART), MINECARTS);
-        generated(reg.getSup(ID_LIGHTNING_TNT_CART), MINECARTS);
+        generated(reg.getSup(ID_FIRE_TNT_CART));
+        generated(reg.getSup(ID_EARTH_TNT_CART));
+        generated(reg.getSup(ID_ICE_TNT_CART));
+        generated(reg.getSup(ID_LIGHTNING_TNT_CART));
 
-        generated(reg.getSup(ID_NUKE_TNT_CART), MINECARTS);
+        generated(reg.getSup(ID_NUKE_TNT_CART));
     }
 
     @Override

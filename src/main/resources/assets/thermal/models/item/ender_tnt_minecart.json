@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "thermal:item/minecarts/ender_tnt_minecart"
+    "layer0": "thermal:item/ender_tnt_minecart"
   }
 }
