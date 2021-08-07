@@ -48,9 +48,9 @@ public class NukeTNTMinecartEntity extends AbstractTNTMinecartEntity {
 
         if (Utils.isServerWorld(world)) {
             world.setBlockState(this.getPosition(), Blocks.AIR.getDefaultState());
-            NukeGrenadeEntity.affectNearbyEntities(this, world, this.getPosition(), radius * 2, null);
-            NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius + radius / 2);
-            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) NukeGrenadeEntity.explosionStrength * 2, !this.isInWater(), NukeGrenadeEntity.explosionsBreakBlocks ? Explosion.Mode.BREAK : Explosion.Mode.NONE);
+            NukeGrenadeEntity.affectNearbyEntities(this, world, this.getPosition(), radius * 3, null);
+            NukeGrenadeEntity.destroyBlocks(this, world, this.getPosition(), radius * 2);
+            world.createExplosion(this, this.getPosX(), this.getPosY(), this.getPosZ(), (float) NukeGrenadeEntity.explosionStrength * 2, !this.isInWater(), NukeGrenadeEntity.explosionsDestroyBlocks ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
             this.remove();
         }
         this.world.addParticle(ParticleTypes.FLASH, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
