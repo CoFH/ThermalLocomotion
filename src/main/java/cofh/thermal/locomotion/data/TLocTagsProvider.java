@@ -27,9 +27,9 @@ public class TLocTagsProvider {
         }
 
         @Override
-        protected void registerTags() {
+        protected void addTags() {
 
-            getOrCreateBuilder(BlockTags.RAILS).add(
+            tag(BlockTags.RAILS).add(
                     BLOCKS.get(ID_CROSSOVER_RAIL),
 
                     BLOCKS.get(ID_PRISMARINE_RAIL),
@@ -62,7 +62,7 @@ public class TLocTagsProvider {
         }
 
         @Override
-        protected void registerTags() {
+        protected void addTags() {
 
         }
 
@@ -82,7 +82,7 @@ public class TLocTagsProvider {
         }
 
         @Override
-        protected void registerTags() {
+        protected void addTags() {
 
         }
 

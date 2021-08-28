@@ -44,14 +44,14 @@ public class EarthTNTMinecartEntity extends AbstractTNTMinecartEntity {
     @Override
     protected void explode() {
 
-        if (Utils.isServerWorld(world)) {
-            EarthGrenadeEntity.sunderNearbyEntities(this, world, this.getPosition(), radius);
-            EarthGrenadeEntity.breakBlocks(this, world, this.getPosition(), radius - 1, null);
+        if (Utils.isServerWorld(level)) {
+            EarthGrenadeEntity.sunderNearbyEntities(this, level, this.blockPosition(), radius);
+            EarthGrenadeEntity.breakBlocks(this, level, this.blockPosition(), radius - 1, null);
             this.remove();
-            this.entityDropItem(getCartItem());
+            this.spawnAtLocation(getCartItem());
         }
-        this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
-        this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
+        this.level.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 1.0D, 0.0D, 0.0D);
+        this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EXPLODE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.level.random.nextFloat() - this.level.random.nextFloat()) * 0.2F) * 0.7F, false);
     }
 
 }

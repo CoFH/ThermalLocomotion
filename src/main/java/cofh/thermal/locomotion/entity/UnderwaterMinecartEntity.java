@@ -58,16 +58,16 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     public void tick() {
 
         super.tick();
-        if (Utils.isServerWorld(world)) {
-            if (!this.inWater) {
+        if (Utils.isServerWorld(level)) {
+            if (!this.wasTouchingWater) {
                 airSupply = Math.min(airSupply + 40, AIR_SUPPLY_MAX);
             } else {
                 List<Entity> passengers = getPassengers();
                 if (!passengers.isEmpty() && airSupply > 0) {
                     passengers.forEach((e) -> {
-                        if (e.getAir() < e.getMaxAir()) {
-                            e.setAir(e.getAir() + 1);
-                            if (rand.nextInt(respirationFactor) <= 0) {
+                        if (e.getAirSupply() < e.getMaxAirSupply()) {
+                            e.setAirSupply(e.getAirSupply() + 1);
+                            if (random.nextInt(respirationFactor) <= 0) {
                                 --airSupply;
                             }
                         }
@@ -78,39 +78,39 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public void readAdditional(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundNBT compound) {
 
-        super.readAdditional(compound);
+        super.readAdditionalSaveData(compound);
 
         respirationFactor = compound.getInt(TAG_CART_DATA);
     }
 
     @Override
-    public void writeAdditional(CompoundNBT compound) {
+    public void addAdditionalSaveData(CompoundNBT compound) {
 
-        super.writeAdditional(compound);
+        super.addAdditionalSaveData(compound);
 
         compound.putInt(TAG_CART_DATA, respirationFactor);
     }
 
     // TODO: 1.16 alteration.
     @Override
-    protected boolean func_233566_aG_() {
+    protected boolean updateInWaterStateAndDoFluidPushing() {
 
-        if (this.getRidingEntity() instanceof BoatEntity) {
-            this.inWater = false;
-        } else if (this.handleFluidAcceleration(FluidTags.WATER, 0.014D)) {
-            if (!this.inWater && !this.firstUpdate) {
+        if (this.getVehicle() instanceof BoatEntity) {
+            this.wasTouchingWater = false;
+        } else if (this.updateFluidHeightAndDoFluidPushing(FluidTags.WATER, 0.014D)) {
+            if (!this.wasTouchingWater && !this.firstTick) {
                 this.doWaterSplashEffect();
             }
             this.fallDistance = 0.0F;
-            this.inWater = true;
-            this.extinguish();
+            this.wasTouchingWater = true;
+            this.clearFire();
             // this.eyesInWater = this.areEyesInFluid(FluidTags.WATER);
         } else {
-            this.inWater = false;
+            this.wasTouchingWater = false;
         }
-        return this.inWater;
+        return this.wasTouchingWater;
     }
 
     //    @Override
@@ -132,15 +132,15 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public ActionResultType processInitialInteract(PlayerEntity player, Hand hand) {
+    public ActionResultType interact(PlayerEntity player, Hand hand) {
 
-        ActionResultType ret = super.processInitialInteract(player, hand);
-        if (ret.isSuccessOrConsume()) return ret;
+        ActionResultType ret = super.interact(player, hand);
+        if (ret.consumesAction()) return ret;
         if (player.isSecondaryUseActive()) {
             return ActionResultType.PASS;
-        } else if (this.isBeingRidden()) {
+        } else if (this.isVehicle()) {
             return ActionResultType.PASS;
-        } else if (!this.world.isRemote) {
+        } else if (!this.level.isClientSide) {
             return player.startRiding(this) ? ActionResultType.CONSUME : ActionResultType.PASS;
         } else {
             return ActionResultType.SUCCESS;
@@ -148,17 +148,17 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public void onActivatorRailPass(int x, int y, int z, boolean receivingPower) {
+    public void activateMinecart(int x, int y, int z, boolean receivingPower) {
 
         if (receivingPower) {
-            if (this.isBeingRidden()) {
-                this.removePassengers();
+            if (this.isVehicle()) {
+                this.ejectPassengers();
             }
-            if (this.getRollingAmplitude() == 0) {
-                this.setRollingDirection(-this.getRollingDirection());
-                this.setRollingAmplitude(10);
+            if (this.getHurtTime() == 0) {
+                this.setHurtDir(-this.getHurtDir());
+                this.setHurtTime(10);
                 this.setDamage(50.0F);
-                this.markVelocityChanged();
+                this.markHurt();
             }
         }
     }
