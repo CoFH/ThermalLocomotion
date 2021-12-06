@@ -17,6 +17,19 @@
   "block.thermal.prismarine_powered_rail": "パワードプリズマリンレール",
   "block.thermal.prismarine_rail": "プリズマリンレール",
 
+  "entity.thermal.earth_tnt_minecart": "地動爆弾付きトロッコ",
+  "entity.thermal.ender_tnt_minecart": "混乱爆弾付きトロッコ",
+  "entity.thermal.fire_tnt_minecart": "灼熱爆弾付きトロッコ",
+  "entity.thermal.glowstone_tnt_minecart": "輻射爆弾付きトロッコ",
+  "entity.thermal.ice_tnt_minecart": "氷冷爆弾付きトロッコ",
+  "entity.thermal.lightning_tnt_minecart": "雷轟爆弾付きトロッコ",
+  "entity.thermal.nuke_tnt_minecart": "核爆弾付きトロッコ",
+  "entity.thermal.phyto_tnt_minecart": "PNT付きトロッコ",
+  "entity.thermal.redstone_tnt_minecart": "レッドストーン爆弾付きトロッコ",
+  "entity.thermal.slime_tnt_minecart": "スライム爆弾付きトロッコ",
+
+  "entity.thermal.underwater_minecart": "潜水トロッコ",
+
   "item.thermal.earth_tnt_minecart": "地動爆弾付きトロッコ",
   "item.thermal.ender_tnt_minecart": "混乱爆弾付きトロッコ",
   "item.thermal.fire_tnt_minecart": "灼熱爆弾付きトロッコ",
