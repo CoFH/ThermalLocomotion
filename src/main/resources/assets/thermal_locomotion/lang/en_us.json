@@ -17,6 +17,19 @@
   "block.thermal.prismarine_powered_rail": "Powered Prismarine Rail",
   "block.thermal.prismarine_rail": "Prismarine Rail",
 
+  "entity.thermal.earth_tnt_minecart": "Minecart with Tectonic Explosive",
+  "entity.thermal.ender_tnt_minecart": "Minecart with Ender Explosive",
+  "entity.thermal.fire_tnt_minecart": "Minecart with Inferno Explosive",
+  "entity.thermal.glowstone_tnt_minecart": "Minecart with Glowstone Explosive",
+  "entity.thermal.ice_tnt_minecart": "Minecart with Glacial Explosive",
+  "entity.thermal.lightning_tnt_minecart": "Minecart with Fulminating Explosive",
+  "entity.thermal.nuke_tnt_minecart": "Minecart with Nuclear Explosive",
+  "entity.thermal.phyto_tnt_minecart": "Minecart with PNT",
+  "entity.thermal.redstone_tnt_minecart": "Minecart with Redstone Explosive",
+  "entity.thermal.slime_tnt_minecart": "Minecart with Slime Explosive",
+
+  "entity.thermal.underwater_minecart": "Underwater Minecart",
+
   "item.thermal.earth_tnt_minecart": "Minecart with Tectonic Explosive",
   "item.thermal.ender_tnt_minecart": "Minecart with Ender Explosive",
   "item.thermal.fire_tnt_minecart": "Minecart with Inferno Explosive",
