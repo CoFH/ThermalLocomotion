@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.TCoreIDs.ID_LIGHTNING_TNT;
+import static cofh.thermal.lib.common.ThermalIDs.ID_LIGHTNING_TNT;
 import static cofh.thermal.locomotion.init.TLocReferences.LIGHTNING_TNT_CART_ENTITY;
 import static cofh.thermal.locomotion.init.TLocReferences.LIGHTNING_TNT_CART_ITEM;
 
@@ -46,18 +46,18 @@ public class LightningTNTMinecartEntity extends AbstractTNTMinecartEntity {
     @Override
     protected void explode() {
 
-        if (Utils.isServerWorld(world)) {
-            BlockPos pos = this.getPosition();
-            if (this.world.canSeeSky(pos)) {
-                Utils.spawnLightningBolt(world, pos);
+        if (Utils.isServerWorld(level)) {
+            BlockPos pos = this.blockPosition();
+            if (this.level.canSeeSky(pos)) {
+                Utils.spawnLightningBolt(level, pos);
             }
-            LightningGrenadeEntity.shockNearbyEntities(this, world, this.getPosition(), radius);
-            AreaUtils.zapNearbyGround(this, world, this.getPosition(), radius, 0.05, 12);
+            LightningGrenadeEntity.shockNearbyEntities(this, level, this.blockPosition(), radius);
+            AreaUtils.zapNearbyGround(this, level, this.blockPosition(), radius, 0.05, 12);
             this.remove();
-            this.entityDropItem(getCartItem());
+            this.spawnAtLocation(getCartItem());
         }
-        this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
-        this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
+        this.level.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 1.0D, 0.0D, 0.0D);
+        this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EXPLODE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.level.random.nextFloat() - this.level.random.nextFloat()) * 0.2F) * 0.7F, false);
     }
 
 }

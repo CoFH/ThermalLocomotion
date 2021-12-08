@@ -56,7 +56,7 @@ public class ThermalLocomotion {
     // region HELPERS
     private void registerRenderLayers() {
 
-        RenderType cutout = RenderType.getCutout();
+        RenderType cutout = RenderType.cutout();
 
         RenderTypeLookup.setRenderLayer(BLOCKS.get(ID_CROSSOVER_RAIL), cutout);
 

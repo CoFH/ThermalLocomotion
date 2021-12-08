@@ -15,7 +15,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.core.init.TCoreIDs.ID_PHYTO_TNT;
+import static cofh.thermal.lib.common.ThermalIDs.ID_PHYTO_TNT;
 import static cofh.thermal.locomotion.init.TLocReferences.PHYTO_TNT_CART_ENTITY;
 import static cofh.thermal.locomotion.init.TLocReferences.PHYTO_TNT_CART_ITEM;
 
@@ -46,29 +46,29 @@ public class PhytoTNTMinecartEntity extends AbstractTNTMinecartEntity {
     @Override
     protected void explode() {
 
-        if (Utils.isServerWorld(world)) {
-            AreaUtils.growPlants(this, world, this.getPosition(), radius);
+        if (Utils.isServerWorld(level)) {
+            AreaUtils.growPlants(this, level, this.blockPosition(), radius);
             for (int i = 0; i < 4; ++i) {
-                PhytoGroItem.growSeagrass(world, this.getPosition(), null);
+                PhytoGroItem.growSeagrass(level, this.blockPosition(), null);
             }
             makeAreaOfEffectCloud();
             this.remove();
-            this.entityDropItem(getCartItem());
+            this.spawnAtLocation(getCartItem());
         }
-        this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getPosX(), this.getPosY(), this.getPosZ(), 1.0D, 0.0D, 0.0D);
-        this.world.playSound(this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
+        this.level.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getX(), this.getY(), this.getZ(), 1.0D, 0.0D, 0.0D);
+        this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundCategory.BLOCKS, 2.0F, (1.0F + (this.level.random.nextFloat() - this.level.random.nextFloat()) * 0.2F) * 0.7F, false);
     }
 
     private void makeAreaOfEffectCloud() {
 
-        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(world, getPosX(), getPosY(), getPosZ());
+        AreaEffectCloudEntity cloud = new AreaEffectCloudEntity(level, getX(), getY(), getZ());
         cloud.setRadius(1);
-        cloud.setParticleData(ParticleTypes.HAPPY_VILLAGER);
+        cloud.setParticle(ParticleTypes.HAPPY_VILLAGER);
         cloud.setDuration(CLOUD_DURATION);
         cloud.setWaitTime(0);
         cloud.setRadiusPerTick((radius - cloud.getRadius()) / (float) cloud.getDuration());
 
-        world.addEntity(cloud);
+        level.addFreshEntity(cloud);
     }
 
 }

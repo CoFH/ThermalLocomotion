@@ -15,8 +15,8 @@ import java.util.function.Consumer;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.init.TCoreIDs.*;
 import static cofh.thermal.lib.common.ThermalFlags.*;
+import static cofh.thermal.lib.common.ThermalIDs.*;
 import static cofh.thermal.locomotion.init.TLocIDs.*;
 
 public class TLocRecipeProvider extends RecipeProviderCoFH {
@@ -34,7 +34,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 
         registerRailRecipes(consumer);
         registerCartRecipes(consumer);
@@ -48,198 +48,198 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
         String detectorRail = name(Items.DETECTOR_RAIL);
         String poweredRail = name(Items.POWERED_RAIL);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_CROSSOVER_RAIL))
-                .key('I', Items.STICK)
-                .key('X', Blocks.RAIL)
-                .patternLine("XI")
-                .patternLine("IX")
-                .addCriterion("has_" + rail, hasItem(Items.RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_CROSSOVER_RAIL))
+                .define('I', Items.STICK)
+                .define('X', Blocks.RAIL)
+                .pattern("XI")
+                .pattern("IX")
+                .unlockedBy("has_" + rail, has(Items.RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_PRISMARINE_RAIL), 6)
-                .key('C', Items.PRISMARINE_CRYSTALS)
-                .key('S', Items.PRISMARINE_SHARD)
-                .key('X', Blocks.RAIL)
-                .patternLine("XSX")
-                .patternLine("XCX")
-                .patternLine("XSX")
-                .addCriterion("has_" + rail, hasItem(Items.RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_PRISMARINE_RAIL), 6)
+                .define('C', Items.PRISMARINE_CRYSTALS)
+                .define('S', Items.PRISMARINE_SHARD)
+                .define('X', Blocks.RAIL)
+                .pattern("XSX")
+                .pattern("XCX")
+                .pattern("XSX")
+                .unlockedBy("has_" + rail, has(Items.RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_PRISMARINE_CROSSOVER_RAIL))
-                .key('I', Items.STICK)
-                .key('X', BLOCKS.get(ID_PRISMARINE_RAIL))
-                .patternLine("XI")
-                .patternLine("IX")
-                .addCriterion("has_" + name(BLOCKS.get(ID_PRISMARINE_RAIL)), hasItem(ITEMS.get(ID_PRISMARINE_RAIL)))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_PRISMARINE_CROSSOVER_RAIL))
+                .define('I', Items.STICK)
+                .define('X', BLOCKS.get(ID_PRISMARINE_RAIL))
+                .pattern("XI")
+                .pattern("IX")
+                .unlockedBy("has_" + name(BLOCKS.get(ID_PRISMARINE_RAIL)), has(ITEMS.get(ID_PRISMARINE_RAIL)))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_PRISMARINE_ACTIVATOR_RAIL), 6)
-                .key('C', Items.PRISMARINE_CRYSTALS)
-                .key('S', Items.PRISMARINE_SHARD)
-                .key('X', Blocks.ACTIVATOR_RAIL)
-                .patternLine("XSX")
-                .patternLine("XCX")
-                .patternLine("XSX")
-                .addCriterion("has_" + activatorRail, hasItem(Items.ACTIVATOR_RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_PRISMARINE_ACTIVATOR_RAIL), 6)
+                .define('C', Items.PRISMARINE_CRYSTALS)
+                .define('S', Items.PRISMARINE_SHARD)
+                .define('X', Blocks.ACTIVATOR_RAIL)
+                .pattern("XSX")
+                .pattern("XCX")
+                .pattern("XSX")
+                .unlockedBy("has_" + activatorRail, has(Items.ACTIVATOR_RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_PRISMARINE_DETECTOR_RAIL), 6)
-                .key('C', Items.PRISMARINE_CRYSTALS)
-                .key('S', Items.PRISMARINE_SHARD)
-                .key('X', Blocks.DETECTOR_RAIL)
-                .patternLine("XSX")
-                .patternLine("XCX")
-                .patternLine("XSX")
-                .addCriterion("has_" + detectorRail, hasItem(Items.DETECTOR_RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_PRISMARINE_DETECTOR_RAIL), 6)
+                .define('C', Items.PRISMARINE_CRYSTALS)
+                .define('S', Items.PRISMARINE_SHARD)
+                .define('X', Blocks.DETECTOR_RAIL)
+                .pattern("XSX")
+                .pattern("XCX")
+                .pattern("XSX")
+                .unlockedBy("has_" + detectorRail, has(Items.DETECTOR_RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_PRISMARINE_POWERED_RAIL), 6)
-                .key('C', Items.PRISMARINE_CRYSTALS)
-                .key('S', Items.PRISMARINE_SHARD)
-                .key('X', Blocks.POWERED_RAIL)
-                .patternLine("XSX")
-                .patternLine("XCX")
-                .patternLine("XSX")
-                .addCriterion("has_" + poweredRail, hasItem(Items.POWERED_RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_PRISMARINE_POWERED_RAIL), 6)
+                .define('C', Items.PRISMARINE_CRYSTALS)
+                .define('S', Items.PRISMARINE_SHARD)
+                .define('X', Blocks.POWERED_RAIL)
+                .pattern("XSX")
+                .pattern("XCX")
+                .pattern("XSX")
+                .unlockedBy("has_" + poweredRail, has(Items.POWERED_RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_RAIL), 6)
-                .key('I', ItemTagsCoFH.INGOTS_LUMIUM)
-                .key('X', Blocks.RAIL)
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .addCriterion("has_" + rail, hasItem(Items.RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_RAIL), 6)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('X', Blocks.RAIL)
+                .pattern("XIX")
+                .pattern("XIX")
+                .pattern("XIX")
+                .unlockedBy("has_" + rail, has(Items.RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_CROSSOVER_RAIL))
-                .key('I', Items.STICK)
-                .key('X', BLOCKS.get(ID_LUMIUM_RAIL))
-                .patternLine("XI")
-                .patternLine("IX")
-                .addCriterion("has_" + name(BLOCKS.get(ID_LUMIUM_RAIL)), hasItem(ITEMS.get(ID_LUMIUM_RAIL)))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_CROSSOVER_RAIL))
+                .define('I', Items.STICK)
+                .define('X', BLOCKS.get(ID_LUMIUM_RAIL))
+                .pattern("XI")
+                .pattern("IX")
+                .unlockedBy("has_" + name(BLOCKS.get(ID_LUMIUM_RAIL)), has(ITEMS.get(ID_LUMIUM_RAIL)))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), 6)
-                .key('I', ItemTagsCoFH.INGOTS_LUMIUM)
-                .key('X', Blocks.ACTIVATOR_RAIL)
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .addCriterion("has_" + activatorRail, hasItem(Items.ACTIVATOR_RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), 6)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('X', Blocks.ACTIVATOR_RAIL)
+                .pattern("XIX")
+                .pattern("XIX")
+                .pattern("XIX")
+                .unlockedBy("has_" + activatorRail, has(Items.ACTIVATOR_RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), 6)
-                .key('I', ItemTagsCoFH.INGOTS_LUMIUM)
-                .key('X', Blocks.DETECTOR_RAIL)
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .addCriterion("has_" + detectorRail, hasItem(Items.DETECTOR_RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), 6)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('X', Blocks.DETECTOR_RAIL)
+                .pattern("XIX")
+                .pattern("XIX")
+                .pattern("XIX")
+                .unlockedBy("has_" + detectorRail, has(Items.DETECTOR_RAIL))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), 6)
-                .key('I', ItemTagsCoFH.INGOTS_LUMIUM)
-                .key('X', Blocks.POWERED_RAIL)
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .patternLine("XIX")
-                .addCriterion("has_" + poweredRail, hasItem(Items.POWERED_RAIL))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), 6)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('X', Blocks.POWERED_RAIL)
+                .pattern("XIX")
+                .pattern("XIX")
+                .pattern("XIX")
+                .unlockedBy("has_" + poweredRail, has(Items.POWERED_RAIL))
+                .save(consumer);
     }
 
     private void registerCartRecipes(Consumer<IFinishedRecipe> consumer) {
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_UNDERWATER_CART))
-                .key('C', Items.MINECART)
-                .key('G', Tags.Items.GLASS)
-                .key('P', Items.PRISMARINE)
-                .patternLine("GGG")
-                .patternLine("GCG")
-                .patternLine("PPP")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_UNDERWATER_CART))
+                .define('C', Items.MINECART)
+                .define('G', Tags.Items.GLASS)
+                .define('P', Items.PRISMARINE)
+                .pattern("GGG")
+                .pattern("GCG")
+                .pattern("PPP")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(consumer);
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_SLIME_TNT_CART))
-                .key('A', ITEMS.get(ID_SLIME_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_SLIME_TNT_CART))
+                .define('A', ITEMS.get(ID_SLIME_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_REDSTONE_TNT_CART))
-                .key('A', ITEMS.get(ID_REDSTONE_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_REDSTONE_TNT_CART))
+                .define('A', ITEMS.get(ID_REDSTONE_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_GLOWSTONE_TNT_CART))
-                .key('A', ITEMS.get(ID_GLOWSTONE_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_GLOWSTONE_TNT_CART))
+                .define('A', ITEMS.get(ID_GLOWSTONE_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_ENDER_TNT_CART))
-                .key('A', ITEMS.get(ID_ENDER_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_ENDER_TNT_CART))
+                .define('A', ITEMS.get(ID_ENDER_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_PHYTO_TNT_CART))
-                .key('A', ITEMS.get(ID_PHYTO_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_PHYTOGRO_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_PHYTO_TNT_CART))
+                .define('A', ITEMS.get(ID_PHYTO_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_PHYTOGRO_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_FIRE_TNT_CART))
-                .key('A', ITEMS.get(ID_FIRE_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_FIRE_TNT_CART))
+                .define('A', ITEMS.get(ID_FIRE_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_EARTH_TNT_CART))
-                .key('A', ITEMS.get(ID_EARTH_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_EARTH_TNT_CART))
+                .define('A', ITEMS.get(ID_EARTH_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_ICE_TNT_CART))
-                .key('A', ITEMS.get(ID_ICE_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_ICE_TNT_CART))
+                .define('A', ITEMS.get(ID_ICE_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_LIGHTNING_TNT_CART))
-                .key('A', ITEMS.get(ID_LIGHTNING_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_LIGHTNING_TNT_CART))
+                .define('A', ITEMS.get(ID_LIGHTNING_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
 
-        ShapedRecipeBuilder.shapedRecipe(ITEMS.get(ID_NUKE_TNT_CART))
-                .key('A', ITEMS.get(ID_NUKE_TNT))
-                .key('B', Items.MINECART)
-                .patternLine("A")
-                .patternLine("B")
-                .addCriterion("has_" + name(Items.MINECART), hasItem(Items.MINECART))
-                .build(withConditions(consumer).flag(FLAG_NUCLEAR_EXPLOSIVES));
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_NUKE_TNT_CART))
+                .define('A', ITEMS.get(ID_NUKE_TNT))
+                .define('B', Items.MINECART)
+                .pattern("A")
+                .pattern("B")
+                .unlockedBy("has_" + name(Items.MINECART), has(Items.MINECART))
+                .save(withConditions(consumer).flag(FLAG_NUCLEAR_EXPLOSIVES));
     }
     // endregion
 }
