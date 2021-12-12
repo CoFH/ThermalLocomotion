@@ -19,7 +19,7 @@ import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.locomotion.init.TLocIDs.*;
 import static cofh.thermal.locomotion.init.TLocReferences.*;
 
-@Mod(ID_THERMAL_LOCOMOTION)
+@Mod (ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {
 
     public ThermalLocomotion() {
