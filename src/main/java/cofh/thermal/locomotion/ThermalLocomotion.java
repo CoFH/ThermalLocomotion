@@ -1,6 +1,5 @@
 package cofh.thermal.locomotion;
 
-import cofh.lib.client.renderer.entity.TNTMinecartRendererCoFH;
 import cofh.thermal.core.client.renderer.entity.UnderwaterMinecartRenderer;
 import cofh.thermal.locomotion.init.TLocBlocks;
 import cofh.thermal.locomotion.init.TLocEntities;
@@ -17,7 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.locomotion.init.TLocIDs.*;
-import static cofh.thermal.locomotion.init.TLocReferences.*;
+import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ENTITY;
 
 @Mod (ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {
@@ -76,20 +75,6 @@ public class ThermalLocomotion {
     private void registerEntityRenderingHandlers() {
 
         RenderingRegistry.registerEntityRenderingHandler(UNDERWATER_CART_ENTITY, UnderwaterMinecartRenderer::new);
-
-        RenderingRegistry.registerEntityRenderingHandler(SLIME_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-        RenderingRegistry.registerEntityRenderingHandler(REDSTONE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-        RenderingRegistry.registerEntityRenderingHandler(GLOWSTONE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENDER_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-
-        RenderingRegistry.registerEntityRenderingHandler(PHYTO_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-
-        RenderingRegistry.registerEntityRenderingHandler(FIRE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-        RenderingRegistry.registerEntityRenderingHandler(EARTH_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-        RenderingRegistry.registerEntityRenderingHandler(ICE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-        RenderingRegistry.registerEntityRenderingHandler(LIGHTNING_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
-
-        RenderingRegistry.registerEntityRenderingHandler(NUKE_TNT_CART_ENTITY, TNTMinecartRendererCoFH::new);
     }
     // endregion
 }
