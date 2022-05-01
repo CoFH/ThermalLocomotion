@@ -12,7 +12,6 @@ import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -21,7 +20,6 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Map;
 
-import static cofh.lib.util.constants.NBTTags.TAG_CART_DATA;
 import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ENTITY;
 import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ITEM;
 
@@ -42,11 +40,11 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
         super(UNDERWATER_CART_ENTITY, worldIn, posX, posY, posZ);
     }
 
-    public UnderwaterMinecartEntity setEnchantments(ListNBT enchantments) {
+    public UnderwaterMinecartEntity onPlaced(ItemStack stack) {
 
-        super.setEnchantments(enchantments);
+        super.onPlaced(stack);
+
         Map<Enchantment, Integer> enchantMap = EnchantmentHelper.deserializeEnchantments(enchantments);
-
         if (enchantMap.containsKey(Enchantments.RESPIRATION)) {
             int encRespiration = enchantMap.get(Enchantments.RESPIRATION);
             this.respirationFactor = Math.max(1, encRespiration + 1);
@@ -82,15 +80,11 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
 
         super.readAdditionalSaveData(compound);
 
-        respirationFactor = compound.getInt(TAG_CART_DATA);
-    }
-
-    @Override
-    public void addAdditionalSaveData(CompoundNBT compound) {
-
-        super.addAdditionalSaveData(compound);
-
-        compound.putInt(TAG_CART_DATA, respirationFactor);
+        Map<Enchantment, Integer> enchantMap = EnchantmentHelper.deserializeEnchantments(enchantments);
+        if (enchantMap.containsKey(Enchantments.RESPIRATION)) {
+            int encRespiration = enchantMap.get(Enchantments.RESPIRATION);
+            this.respirationFactor = Math.max(1, encRespiration + 1);
+        }
     }
 
     // TODO: 1.16 alteration.

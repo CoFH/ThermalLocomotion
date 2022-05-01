@@ -8,6 +8,8 @@ public class TLocIDs {
 
     // region CARTS
     public static final String ID_UNDERWATER_CART = "underwater_minecart";
+    public static final String ID_ENERGY_CART = "energy_minecart";
+    public static final String ID_FLUID_CART = "fluid_minecart";
 
     public static final String ID_SLIME_TNT_CART = "slime_tnt_minecart";
     public static final String ID_REDSTONE_TNT_CART = "redstone_tnt_minecart";

@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion;
 
-import cofh.thermal.core.client.renderer.entity.UnderwaterMinecartRenderer;
+import cofh.thermal.locomotion.client.renderer.entity.UnderwaterMinecartRenderer;
 import cofh.thermal.locomotion.init.TLocBlocks;
 import cofh.thermal.locomotion.init.TLocEntities;
 import cofh.thermal.locomotion.init.TLocItems;
