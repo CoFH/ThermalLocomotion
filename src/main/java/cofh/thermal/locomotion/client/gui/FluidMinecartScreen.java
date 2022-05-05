@@ -2,9 +2,9 @@ package cofh.thermal.locomotion.client.gui;
 
 import cofh.core.client.gui.ContainerScreenCoFH;
 import cofh.thermal.locomotion.inventory.container.FluidMinecartContainer;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 
 import static cofh.core.util.helpers.GuiHelper.generatePanelInfo;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
@@ -14,7 +14,7 @@ public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartContai
     public static final String TEX_PATH = ID_THERMAL + ":textures/gui/container/fluid_minecart.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
-    public FluidMinecartScreen(FluidMinecartContainer container, PlayerInventory inv, ITextComponent titleIn) {
+    public FluidMinecartScreen(FluidMinecartContainer container, Inventory inv, Component titleIn) {
 
         super(container, inv, titleIn);
 

@@ -2,9 +2,9 @@ package cofh.thermal.locomotion.item;
 
 import cofh.core.item.MinecartItemCoFH;
 import cofh.thermal.locomotion.entity.UnderwaterMinecartEntity;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 
 public class UnderwaterMinecartItem extends MinecartItemCoFH {
 

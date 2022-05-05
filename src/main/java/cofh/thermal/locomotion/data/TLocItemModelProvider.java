@@ -3,7 +3,7 @@ package cofh.thermal.locomotion.data;
 import cofh.lib.data.ItemModelProviderCoFH;
 import cofh.lib.util.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;

@@ -1,13 +1,13 @@
 package cofh.thermal.locomotion.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
-import cofh.lib.util.references.ItemTagsCoFH;
+import cofh.lib.util.references.CoFHTags;
 import cofh.thermal.lib.common.ThermalFlags;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.item.Items;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -34,14 +34,14 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
     }
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
 
         registerRailRecipes(consumer);
         registerCartRecipes(consumer);
     }
 
     // region HELPERS
-    private void registerRailRecipes(Consumer<IFinishedRecipe> consumer) {
+    private void registerRailRecipes(Consumer<FinishedRecipe> consumer) {
 
         String rail = name(Items.RAIL);
         String activatorRail = name(Items.ACTIVATOR_RAIL);
@@ -105,7 +105,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_RAIL), 6)
-                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .define('X', Blocks.RAIL)
                 .pattern("XIX")
                 .pattern("XIX")
@@ -122,7 +122,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), 6)
-                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .define('X', Blocks.ACTIVATOR_RAIL)
                 .pattern("XIX")
                 .pattern("XIX")
@@ -131,7 +131,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), 6)
-                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .define('X', Blocks.DETECTOR_RAIL)
                 .pattern("XIX")
                 .pattern("XIX")
@@ -140,7 +140,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), 6)
-                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
+                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
                 .define('X', Blocks.POWERED_RAIL)
                 .pattern("XIX")
                 .pattern("XIX")
@@ -149,7 +149,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
     }
 
-    private void registerCartRecipes(Consumer<IFinishedRecipe> consumer) {
+    private void registerCartRecipes(Consumer<FinishedRecipe> consumer) {
 
         ShapedRecipeBuilder.shaped(ITEMS.get(ID_UNDERWATER_CART))
                 .define('C', Items.MINECART)

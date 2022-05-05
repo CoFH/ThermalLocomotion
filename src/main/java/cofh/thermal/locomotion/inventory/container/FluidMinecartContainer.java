@@ -1,15 +1,15 @@
 package cofh.thermal.locomotion.inventory.container;
 
 import cofh.lib.inventory.container.ContainerCoFH;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
 
 import javax.annotation.Nullable;
 
 public class FluidMinecartContainer extends ContainerCoFH {
 
-    public FluidMinecartContainer(@Nullable ContainerType<?> type, int id, PlayerInventory inventory, PlayerEntity player) {
+    public FluidMinecartContainer(@Nullable MenuType<?> type, int id, Inventory inventory, Player player) {
 
         super(type, id, inventory, player);
 
@@ -23,7 +23,7 @@ public class FluidMinecartContainer extends ContainerCoFH {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity p_75145_1_) {
+    public boolean stillValid(Player player) {
 
         return false;
     }

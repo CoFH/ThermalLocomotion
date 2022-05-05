@@ -1,21 +1,21 @@
 package cofh.thermal.locomotion.entity;
 
-import cofh.lib.entity.AbstractMinecartEntityCoFH;
+import cofh.lib.entity.AbstractMinecartCoFH;
 import cofh.lib.util.Utils;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.BoatEntity;
-import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 
 import java.util.List;
 import java.util.Map;
@@ -23,19 +23,19 @@ import java.util.Map;
 import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ENTITY;
 import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ITEM;
 
-public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
+public class UnderwaterMinecartEntity extends AbstractMinecartCoFH {
 
     public static final int AIR_SUPPLY_MAX = 4800;
 
     protected int airSupply = AIR_SUPPLY_MAX;
     protected int respirationFactor = 1;
 
-    public UnderwaterMinecartEntity(EntityType<? extends UnderwaterMinecartEntity> type, World worldIn) {
+    public UnderwaterMinecartEntity(EntityType<? extends UnderwaterMinecartEntity> type, Level worldIn) {
 
         super(type, worldIn);
     }
 
-    public UnderwaterMinecartEntity(World worldIn, double posX, double posY, double posZ) {
+    public UnderwaterMinecartEntity(Level worldIn, double posX, double posY, double posZ) {
 
         super(UNDERWATER_CART_ENTITY, worldIn, posX, posY, posZ);
     }
@@ -76,7 +76,7 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT compound) {
+    public void readAdditionalSaveData(CompoundTag compound) {
 
         super.readAdditionalSaveData(compound);
 
@@ -87,11 +87,10 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
         }
     }
 
-    // TODO: 1.16 alteration.
     @Override
     protected boolean updateInWaterStateAndDoFluidPushing() {
 
-        if (this.getVehicle() instanceof BoatEntity) {
+        if (this.getVehicle() instanceof Boat) {
             this.wasTouchingWater = false;
         } else if (this.updateFluidHeightAndDoFluidPushing(FluidTags.WATER, 0.014D)) {
             if (!this.wasTouchingWater && !this.firstTick) {
@@ -126,18 +125,18 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public ActionResultType interact(PlayerEntity player, Hand hand) {
+    public InteractionResult interact(Player player, InteractionHand hand) {
 
-        ActionResultType ret = super.interact(player, hand);
+        InteractionResult ret = super.interact(player, hand);
         if (ret.consumesAction()) return ret;
         if (player.isSecondaryUseActive()) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         } else if (this.isVehicle()) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         } else if (!this.level.isClientSide) {
-            return player.startRiding(this) ? ActionResultType.CONSUME : ActionResultType.PASS;
+            return player.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;
         } else {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
     }
 
@@ -158,7 +157,7 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     }
 
     @Override
-    public ItemStack getCartItem() {
+    public ItemStack getPickResult() {
 
         return new ItemStack(UNDERWATER_CART_ITEM);
     }
@@ -166,7 +165,7 @@ public class UnderwaterMinecartEntity extends AbstractMinecartEntityCoFH {
     @Override
     public Type getMinecartType() {
 
-        return AbstractMinecartEntity.Type.RIDEABLE;
+        return AbstractMinecart.Type.RIDEABLE;
     }
 
 }

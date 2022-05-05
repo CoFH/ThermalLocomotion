@@ -3,8 +3,8 @@ package cofh.thermal.locomotion.init;
 import cofh.thermal.locomotion.entity.EnergyMinecartEntity;
 import cofh.thermal.locomotion.entity.FluidMinecartEntity;
 import cofh.thermal.locomotion.entity.UnderwaterMinecartEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
