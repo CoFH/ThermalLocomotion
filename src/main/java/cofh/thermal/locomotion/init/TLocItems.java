@@ -20,6 +20,7 @@ public class TLocItems {
         CreativeModeTab group = ThermalItemGroups.THERMAL_TOOLS;
 
         ITEMS.register(ID_UNDERWATER_CART, () -> new UnderwaterMinecartItem(new Item.Properties().tab(group)).setModId(ID_THERMAL_LOCOMOTION));
+        // ITEMS.register(ID_ENERGY_CART, () -> new EnergyMinecartItem(new Item.Properties().tab(group)).setModId(ID_THERMAL_LOCOMOTION));
     }
 
 }

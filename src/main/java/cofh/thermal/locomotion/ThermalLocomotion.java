@@ -47,11 +47,13 @@ public class ThermalLocomotion {
     private void entityLayerSetup(final EntityRenderersEvent.RegisterLayerDefinitions event) {
 
         event.registerLayerDefinition(UnderwaterMinecartModel.UNDERWATER_MINECART_LAYER, UnderwaterMinecartModel::createMesh);
+        // event.registerLayerDefinition(EnergyMinecartModel.ENERGY_MINECART_LAYER, EnergyMinecartModel::createMesh);
     }
 
     private void entityRendererSetup(final EntityRenderersEvent.RegisterRenderers event) {
 
         event.registerEntityRenderer(UNDERWATER_CART_ENTITY, UnderwaterMinecartRenderer::new);
+        // event.registerEntityRenderer(ENERGY_CART_ENTITY, EnergyMinecartRenderer::new);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

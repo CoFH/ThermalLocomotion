@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.client.renderer.entity;
 
 import cofh.lib.util.helpers.MathHelper;
-import cofh.thermal.locomotion.client.renderer.entity.model.UnderwaterMinecartModel;
+import cofh.thermal.locomotion.client.renderer.entity.model.EnergyMinecartModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
@@ -20,16 +20,16 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 @OnlyIn (Dist.CLIENT)
-public class UnderwaterMinecartRenderer<T extends AbstractMinecart> extends EntityRenderer<T> {
+public class EnergyMinecartRenderer<T extends AbstractMinecart> extends EntityRenderer<T> {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/underwater_minecart.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/energy_minecart.png");
     protected final EntityModel<T> model;
 
-    public UnderwaterMinecartRenderer(EntityRendererProvider.Context ctx) {
+    public EnergyMinecartRenderer(EntityRendererProvider.Context ctx) {
 
         super(ctx);
         this.shadowRadius = 0.7F;
-        this.model = new UnderwaterMinecartModel<>(ctx.getModelSet().bakeLayer(UnderwaterMinecartModel.UNDERWATER_MINECART_LAYER));
+        this.model = new EnergyMinecartModel<>(ctx.getModelSet().bakeLayer(EnergyMinecartModel.ENERGY_MINECART_LAYER));
     }
 
     @Override
