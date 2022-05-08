@@ -2,7 +2,8 @@ package cofh.thermal.locomotion.client.renderer.entity;
 
 import cofh.core.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.MathHelper;
-import cofh.thermal.locomotion.client.renderer.entity.model.EnergyMinecartModel;
+import cofh.thermal.locomotion.client.renderer.entity.model.FluidMinecartModel;
+import cofh.thermal.locomotion.entity.FluidMinecart;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
@@ -14,32 +15,31 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fluids.FluidStack;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
 
 @OnlyIn (Dist.CLIENT)
-public class EnergyMinecartRenderer<T extends AbstractMinecart> extends EntityRenderer<T> {
+public class FluidMinecartRenderer extends EntityRenderer<FluidMinecart> {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/energy_minecart.png");
-    protected final EntityModel<T> model;
+    public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/fluid_minecart.png");
+    protected final EntityModel<FluidMinecart> model;
 
-    protected final AABB storageAABB = new AABB(-8.0 / 16.0, -7.0 / 16.0, -6.0 / 16.0, 8.0 / 16.0, 4.0 / 16.0, 6.0 / 16.0);
-    protected final ResourceLocation storageLoc = new ResourceLocation(ID_THERMAL, "block/cells/energy_cell_center");
+    protected final AABB storageAABB = new AABB(-9.5 / 16.0, -6.5 / 16.0, -7.5 / 16.0, 9.5 / 16.0, 3.5 / 16.0, 7.5 / 16.0);
 
-    public EnergyMinecartRenderer(EntityRendererProvider.Context ctx) {
+    public FluidMinecartRenderer(EntityRendererProvider.Context ctx) {
 
         super(ctx);
         this.shadowRadius = 0.7F;
-        this.model = new EnergyMinecartModel<>(ctx.getModelSet().bakeLayer(EnergyMinecartModel.ENERGY_MINECART_LAYER));
+        this.model = new FluidMinecartModel<>(ctx.getModelSet().bakeLayer(FluidMinecartModel.FLUID_MINECART_LAYER));
     }
 
     @Override
-    public void render(T entityIn, float entityYaw, float partialTicks, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
+    public void render(FluidMinecart entityIn, float entityYaw, float partialTicks, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
 
         super.render(entityIn, entityYaw, partialTicks, poseStackIn, bufferIn, packedLightIn);
 
@@ -98,19 +98,22 @@ public class EnergyMinecartRenderer<T extends AbstractMinecart> extends EntityRe
         VertexConsumer ivertexbuilder = bufferIn.getBuffer(this.model.renderType(this.getTextureLocation(entityIn)));
         this.model.renderToBuffer(poseStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
 
-        ivertexbuilder = bufferIn.getBuffer(RenderType.translucent());
-        RenderHelper.renderCuboid(storageAABB, poseStackIn, ivertexbuilder, packedLightIn, 1.0F, 1.0F, 1.0F, 1.0F, RenderHelper.getTexture(storageLoc));
+        FluidStack renderFluid = entityIn.getFluidStack();
 
+        if (!renderFluid.isEmpty()) {
+            ivertexbuilder = bufferIn.getBuffer(RenderType.translucent());
+            RenderHelper.renderCuboid(storageAABB, poseStackIn, ivertexbuilder, packedLightIn, 1.0F, 1.0F, 1.0F, 0.8F, RenderHelper.getFluidTexture(renderFluid));
+        }
         poseStackIn.popPose();
     }
 
     @Override
-    public ResourceLocation getTextureLocation(T entity) {
+    public ResourceLocation getTextureLocation(FluidMinecart entity) {
 
         return TEXTURE;
     }
 
-    //    protected void renderBlockState(T entityIn, float partialTicks, BlockState stateIn, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
+    //    protected void renderBlockState(FluidMinecart entityIn, float partialTicks, BlockState stateIn, PoseStack poseStackIn, MultiBufferSource bufferIn, int packedLightIn) {
     //
     //        Minecraft.getInstance().getBlockRenderer().renderSingleBlock(stateIn, poseStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY);
     //    }

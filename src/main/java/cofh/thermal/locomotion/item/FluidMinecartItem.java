@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.item;
 
 import cofh.core.item.MinecartItemCoFH;
-import cofh.thermal.locomotion.entity.FluidMinecartEntity;
+import cofh.thermal.locomotion.entity.FluidMinecart;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
@@ -11,7 +11,7 @@ public class FluidMinecartItem extends MinecartItemCoFH {
 
     public FluidMinecartItem(Properties builder) {
 
-        super(FluidMinecartEntity::new, builder);
+        super(FluidMinecart::new, builder);
         setEnchantability(10);
     }
 

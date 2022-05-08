@@ -11,13 +11,13 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
-public class EnergyMinecartModel<T extends Entity> extends HierarchicalModel<T> {
+public class FluidMinecartModel<T extends Entity> extends HierarchicalModel<T> {
 
-    public static final ModelLayerLocation ENERGY_MINECART_LAYER = new ModelLayerLocation(new ResourceLocation("thermal:energy_minecart"), "main");
+    public static final ModelLayerLocation FLUID_MINECART_LAYER = new ModelLayerLocation(new ResourceLocation("thermal:fluid_minecart"), "main");
 
     private final ModelPart root;
 
-    public EnergyMinecartModel(ModelPart root) {
+    public FluidMinecartModel(ModelPart root) {
 
         this.root = root;
     }
@@ -28,15 +28,17 @@ public class EnergyMinecartModel<T extends Entity> extends HierarchicalModel<T> 
         PartDefinition partdefinition = meshdefinition.getRoot();
 
         partdefinition.addOrReplaceChild("cart", CubeListBuilder.create()
-                        .texOffs(0, 0).addBox(-8.0F, -12.0F, -10.0F, 16.0F, 3.0F, 20.0F)
-                        .texOffs(0, 23).addBox(-8.0F, -3.0F, -10.0F, 16.0F, 3.0F, 20.0F)
-                        .texOffs(0, 46).addBox(-8.0F, -6.0F, -10.0F, 16.0F, 3.0F, 8.0F)
-                        .texOffs(0, 46).addBox(-8.0F, -6.0F, 2.0F, 16.0F, 3.0F, 8.0F),
+                        .texOffs(76, 20).addBox(-8.0F, -2.0F, -10.0F, 16.0F, 0.0F, 20.0F)
+                        .texOffs(96, 10).addBox(-8.0F, -12.0F, -8.0F, 16.0F, 10.0F, 0.0F)
+                        .texOffs(96, 10).addBox(-8.0F, -12.0F, 8.0F, 16.0F, 10.0F, 0.0F)
+                        .texOffs(88, -20).addBox(-6.0F, -12.0F, -10.0F, 0.0F, 10.0F, 20.0F)
+                        .texOffs(0, 0).addBox(-8.0F, -12.0F, -10.0F, 16.0F, 12.0F, 20.0F)
+                        .texOffs(88, -20).addBox(6.0F, -12.0F, -10.0F, 0.0F, 10.0F, 20.0F),
                 PartPose.offsetAndRotation(0.0F, 5.0F, 0.0F, 0.0F, (float) (Math.PI / 2F), 0.0F));
 
 
-        //        partdefinition.addOrReplaceChild("storage", CubeListBuilder.create()
-        //                        .texOffs(72, 37).addBox(-6.0F, -12.0F, -8.0F, 12.0F, 11.0F, 16.0F),
+        //        partdefinition.addOrReplaceChild("fluid", CubeListBuilder.create()
+        //                        .texOffs(0, 32).addBox(-7.0F, -10.0F, -9.0F, 14.0F, 9.0F, 18.0F),
         //                PartPose.offsetAndRotation(0.0F, 5.0F, 0.0F, 0.0F, (float) (Math.PI / 2F), 0.0F));
 
         return LayerDefinition.create(meshdefinition, 128, 64);

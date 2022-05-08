@@ -1,8 +1,7 @@
 package cofh.thermal.locomotion.entity;
 
-import cofh.lib.energy.EnergyStorageCoFH;
 import cofh.lib.entity.AbstractMinecartCoFH;
-import cofh.thermal.lib.util.ThermalEnergyHelper;
+import cofh.lib.fluid.FluidStorageCoFH;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.EntityType;
@@ -12,51 +11,56 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-import static cofh.thermal.locomotion.init.TLocReferences.ENERGY_CART_ENTITY;
-import static cofh.thermal.locomotion.init.TLocReferences.ENERGY_CART_ITEM;
+import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.thermal.locomotion.init.TLocReferences.FLUID_CART_ENTITY;
+import static cofh.thermal.locomotion.init.TLocReferences.FLUID_CART_ITEM;
 
-;
+public class FluidMinecart extends AbstractMinecartCoFH {
 
-public class EnergyMinecartEntity extends AbstractMinecartCoFH {
+    public static final int BASE_CAPACITY = TANK_MEDIUM * 8;
 
-    public static final int BASE_CAPACITY = 8000000;
-    public static final int BASE_XFER = 8000;
+    protected FluidStorageCoFH fluidStorage = new FluidStorageCoFH(BASE_CAPACITY);
 
-    protected EnergyStorageCoFH energyStorage = new EnergyStorageCoFH(BASE_CAPACITY, BASE_XFER);
-
-    public EnergyMinecartEntity(EntityType<? extends EnergyMinecartEntity> type, Level worldIn) {
+    public FluidMinecart(EntityType<? extends FluidMinecart> type, Level worldIn) {
 
         super(type, worldIn);
     }
 
-    public EnergyMinecartEntity(Level worldIn, double posX, double posY, double posZ) {
+    public FluidMinecart(Level worldIn, double posX, double posY, double posZ) {
 
-        super(ENERGY_CART_ENTITY, worldIn, posX, posY, posZ);
+        super(FLUID_CART_ENTITY, worldIn, posX, posY, posZ);
     }
 
-    public EnergyMinecartEntity onPlaced(ItemStack stack) {
+    public FluidMinecart onPlaced(ItemStack stack) {
 
         super.onPlaced(stack);
 
         Map<Enchantment, Integer> enchantMap = EnchantmentHelper.deserializeEnchantments(enchantments);
         float holdingMod = getHoldingMod(enchantMap);
-        energyStorage.applyModifiers(holdingMod, 1.0F);
+        fluidStorage.applyModifiers(holdingMod);
 
         if (stack.getTag() != null) {
-            energyStorage.read(stack.getTag());
+            fluidStorage.read(stack.getTag());
         }
         return this;
+    }
+
+    public FluidStack getFluidStack() {
+
+        return fluidStorage.getFluidStack();
     }
 
     @Override
     public ItemStack createItemStackTag(ItemStack stack) {
 
-        energyStorage.writeWithParams(stack.getTag());
+        fluidStorage.write(stack.getOrCreateTag());
 
         return super.createItemStackTag(stack);
     }
@@ -68,9 +72,9 @@ public class EnergyMinecartEntity extends AbstractMinecartCoFH {
 
         Map<Enchantment, Integer> enchantMap = EnchantmentHelper.deserializeEnchantments(enchantments);
         float holdingMod = getHoldingMod(enchantMap);
-        energyStorage.applyModifiers(holdingMod, 1.0F);
+        fluidStorage.applyModifiers(holdingMod);
 
-        energyStorage.read(compound);
+        fluidStorage.read(compound);
     }
 
     @Override
@@ -78,13 +82,13 @@ public class EnergyMinecartEntity extends AbstractMinecartCoFH {
 
         super.addAdditionalSaveData(compound);
 
-        energyStorage.write(compound);
+        fluidStorage.write(compound);
     }
 
     @Override
     public ItemStack getPickResult() {
 
-        return new ItemStack(ENERGY_CART_ITEM);
+        return new ItemStack(FLUID_CART_ITEM);
     }
 
     @Override
@@ -94,17 +98,17 @@ public class EnergyMinecartEntity extends AbstractMinecartCoFH {
     }
 
     // region CAPABILITIES
-    protected LazyOptional<?> energyCap = LazyOptional.empty();
+    protected LazyOptional<?> fluidCap = LazyOptional.empty();
 
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 
-        if (cap == ThermalEnergyHelper.getBaseEnergySystem()) {
-            if (!energyCap.isPresent() && energyStorage.getCapacity() > 0) {
-                energyCap = LazyOptional.of(() -> energyStorage);
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            if (!fluidCap.isPresent() && fluidStorage.getCapacity() > 0) {
+                fluidCap = LazyOptional.of(() -> fluidStorage);
             }
-            return energyCap.cast();
+            return fluidCap.cast();
         }
         return super.getCapability(cap, side);
     }
@@ -113,7 +117,7 @@ public class EnergyMinecartEntity extends AbstractMinecartCoFH {
     public void invalidateCaps() {
 
         super.invalidateCaps();
-        energyCap.invalidate();
+        fluidCap.invalidate();
     }
     // endregion
 }

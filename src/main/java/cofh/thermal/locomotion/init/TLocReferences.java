@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.init;
 
-import cofh.thermal.locomotion.entity.EnergyMinecartEntity;
-import cofh.thermal.locomotion.entity.FluidMinecartEntity;
+import cofh.thermal.locomotion.entity.EnergyMinecart;
+import cofh.thermal.locomotion.entity.FluidMinecart;
 import cofh.thermal.locomotion.entity.UnderwaterMinecartEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -22,10 +22,10 @@ public class TLocReferences {
     public static final EntityType<UnderwaterMinecartEntity> UNDERWATER_CART_ENTITY = null;
 
     @ObjectHolder (ID_ENERGY_CART)
-    public static final EntityType<EnergyMinecartEntity> ENERGY_CART_ENTITY = null;
+    public static final EntityType<EnergyMinecart> ENERGY_CART_ENTITY = null;
 
     @ObjectHolder (ID_FLUID_CART)
-    public static final EntityType<FluidMinecartEntity> FLUID_CART_ENTITY = null;
+    public static final EntityType<FluidMinecart> FLUID_CART_ENTITY = null;
     // endregion
 
     // region ITEMS
