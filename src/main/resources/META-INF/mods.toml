@@ -19,34 +19,34 @@ Contains the "railyard" of the Thermal Series - Rails and Minecarts to expand ra
 [[dependencies.thermal_locomotion]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.16.5,)"
+versionRange = "[1.18.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.thermal_locomotion]]
 modId = "forge"
 mandatory = true
-versionRange = "[36.2.20,)"
+versionRange = "[40.1.0,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.thermal_locomotion]]
 modId = "cofh_core"
 mandatory = true
-versionRange = "[1.4,1.5]"
+versionRange = "[1.6,1.7]"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.thermal_locomotion]]
 modId = "thermal"
 mandatory = true
-versionRange = "[1.4,1.5]"
+versionRange = "[1.6,1.7]"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.thermal_locomotion]]
 modId = "thermal_foundation"
 mandatory = true
-versionRange = "[1.4,1.5]"
+versionRange = "[1.6,1.7]"
 ordering = "AFTER"
 side = "BOTH"

@@ -1,10 +1,6 @@
 package cofh.thermal.locomotion;
 
-import cofh.thermal.locomotion.client.renderer.entity.EnergyMinecartRenderer;
-import cofh.thermal.locomotion.client.renderer.entity.FluidMinecartRenderer;
 import cofh.thermal.locomotion.client.renderer.entity.UnderwaterMinecartRenderer;
-import cofh.thermal.locomotion.client.renderer.entity.model.EnergyMinecartModel;
-import cofh.thermal.locomotion.client.renderer.entity.model.FluidMinecartModel;
 import cofh.thermal.locomotion.client.renderer.entity.model.UnderwaterMinecartModel;
 import cofh.thermal.locomotion.init.TLocBlocks;
 import cofh.thermal.locomotion.init.TLocEntities;
@@ -21,7 +17,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.locomotion.init.TLocIDs.*;
-import static cofh.thermal.locomotion.init.TLocReferences.*;
+import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ENTITY;
 
 @Mod (ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {
@@ -51,15 +47,15 @@ public class ThermalLocomotion {
     private void entityLayerSetup(final EntityRenderersEvent.RegisterLayerDefinitions event) {
 
         event.registerLayerDefinition(UnderwaterMinecartModel.UNDERWATER_MINECART_LAYER, UnderwaterMinecartModel::createMesh);
-        event.registerLayerDefinition(EnergyMinecartModel.ENERGY_MINECART_LAYER, EnergyMinecartModel::createMesh);
-        event.registerLayerDefinition(FluidMinecartModel.FLUID_MINECART_LAYER, FluidMinecartModel::createMesh);
+        //        event.registerLayerDefinition(EnergyMinecartModel.ENERGY_MINECART_LAYER, EnergyMinecartModel::createMesh);
+        //        event.registerLayerDefinition(FluidMinecartModel.FLUID_MINECART_LAYER, FluidMinecartModel::createMesh);
     }
 
     private void entityRendererSetup(final EntityRenderersEvent.RegisterRenderers event) {
 
         event.registerEntityRenderer(UNDERWATER_CART_ENTITY, UnderwaterMinecartRenderer::new);
-        event.registerEntityRenderer(ENERGY_CART_ENTITY, EnergyMinecartRenderer::new);
-        event.registerEntityRenderer(FLUID_CART_ENTITY, FluidMinecartRenderer::new);
+        //        event.registerEntityRenderer(ENERGY_CART_ENTITY, EnergyMinecartRenderer::new);
+        //        event.registerEntityRenderer(FLUID_CART_ENTITY, FluidMinecartRenderer::new);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
