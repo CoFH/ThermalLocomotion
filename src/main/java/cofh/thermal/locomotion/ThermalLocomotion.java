@@ -64,7 +64,7 @@ public class ThermalLocomotion {
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
-        this.registerRenderLayers();
+        event.enqueueWork(this::registerRenderLayers);
     }
     // endregion
 
