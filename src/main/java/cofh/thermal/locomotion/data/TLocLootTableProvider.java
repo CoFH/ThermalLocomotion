@@ -1,10 +1,7 @@
 package cofh.thermal.locomotion.data;
 
 import cofh.lib.data.LootTableProviderCoFH;
-import cofh.lib.util.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
@@ -26,8 +23,8 @@ public class TLocLootTableProvider extends LootTableProviderCoFH {
     @Override
     protected void addTables() {
 
-        DeferredRegisterCoFH<Block> regBlocks = BLOCKS;
-        DeferredRegisterCoFH<Item> regItems = ITEMS;
+        var regBlocks = BLOCKS;
+        var regItems = ITEMS;
 
         createSimpleDropTable(regBlocks.get(ID_CROSSOVER_RAIL));
 

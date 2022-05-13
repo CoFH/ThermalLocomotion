@@ -1,9 +1,7 @@
 package cofh.thermal.locomotion.data;
 
 import cofh.lib.data.ItemModelProviderCoFH;
-import cofh.lib.util.DeferredRegisterCoFH;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.world.item.Item;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import static cofh.lib.util.constants.Constants.ID_THERMAL;
@@ -20,7 +18,7 @@ public class TLocItemModelProvider extends ItemModelProviderCoFH {
     @Override
     protected void registerModels() {
 
-        DeferredRegisterCoFH<Item> reg = ITEMS;
+        var reg = ITEMS;
 
         generated(reg.getSup(ID_UNDERWATER_CART));
         //        generated(reg.getSup(ID_ENERGY_CART));
