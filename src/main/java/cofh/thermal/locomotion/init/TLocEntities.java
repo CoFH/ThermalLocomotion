@@ -1,6 +1,8 @@
 package cofh.thermal.locomotion.init;
 
 import cofh.thermal.core.entity.explosive.DetonateUtils;
+import cofh.thermal.locomotion.entity.EnergyMinecart;
+import cofh.thermal.locomotion.entity.FluidMinecart;
 import cofh.thermal.locomotion.entity.UnderwaterMinecartEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -20,8 +22,8 @@ public class TLocEntities {
     public static void register() {
 
         ENTITIES.register(ID_UNDERWATER_CART, () -> EntityType.Builder.<UnderwaterMinecartEntity>of(UnderwaterMinecartEntity::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_UNDERWATER_CART));
-        //        ENTITIES.register(ID_ENERGY_CART, () -> EntityType.Builder.<EnergyMinecart>of(EnergyMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_ENERGY_CART));
-        //        ENTITIES.register(ID_FLUID_CART, () -> EntityType.Builder.<FluidMinecart>of(FluidMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_FLUID_CART));
+        ENTITIES.register(ID_ENERGY_CART, () -> EntityType.Builder.<EnergyMinecart>of(EnergyMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_ENERGY_CART));
+        ENTITIES.register(ID_FLUID_CART, () -> EntityType.Builder.<FluidMinecart>of(FluidMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_FLUID_CART));
 
         registerTNTMinecart(ID_FIRE_TNT_CART, ID_FIRE_TNT, DetonateUtils::fire, getFlag(FLAG_ELEMENTAL_EXPLOSIVES));
         registerTNTMinecart(ID_ICE_TNT_CART, ID_ICE_TNT, DetonateUtils::ice, getFlag(FLAG_ELEMENTAL_EXPLOSIVES));
