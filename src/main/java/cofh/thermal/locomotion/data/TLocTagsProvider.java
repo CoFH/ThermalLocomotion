@@ -2,7 +2,6 @@ package cofh.thermal.locomotion.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
-import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -59,26 +58,6 @@ public class TLocTagsProvider {
         public String getName() {
 
             return "Thermal Locomotion: Item Tags";
-        }
-
-        @Override
-        protected void addTags() {
-
-        }
-
-    }
-
-    public static class Fluid extends FluidTagsProvider {
-
-        public Fluid(DataGenerator gen, ExistingFileHelper existingFileHelper) {
-
-            super(gen, ID_THERMAL, existingFileHelper);
-        }
-
-        @Override
-        public String getName() {
-
-            return "Thermal Locomotion: Fluid Tags";
         }
 
         @Override

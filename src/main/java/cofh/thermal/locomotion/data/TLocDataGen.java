@@ -31,7 +31,6 @@ public class TLocDataGen {
 
         gen.addProvider(blockTags);
         gen.addProvider(new TLocTagsProvider.Item(gen, blockTags, exFileHelper));
-        gen.addProvider(new TLocTagsProvider.Fluid(gen, exFileHelper));
 
         gen.addProvider(new TLocLootTableProvider(gen));
         gen.addProvider(new TLocRecipeProvider(gen));
