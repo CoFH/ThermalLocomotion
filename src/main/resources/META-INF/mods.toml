@@ -10,6 +10,7 @@ displayName = "Thermal Locomotion"
 updateJSONURL = "https://raw.github.com/cofh/version/master/thermal/update_locomotion.json"
 displayURL = "https://teamcofh.com/"
 logoFile = "thermal_locomotion.png"
+itemIcon = "thermal:underwater_minecart"
 credits = "Team CoFH"
 authors = "King Lemming"
 description = '''
