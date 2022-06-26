@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.inventory.container;
 
-import cofh.lib.inventory.container.ContainerCoFH;
+import cofh.core.inventory.container.ContainerCoFH;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;

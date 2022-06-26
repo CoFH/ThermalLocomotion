@@ -5,7 +5,7 @@ import cofh.thermal.locomotion.item.UnderwaterMinecartItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
+import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.ITEMS;
 import static cofh.thermal.locomotion.init.TLocIDs.ID_UNDERWATER_CART;
 

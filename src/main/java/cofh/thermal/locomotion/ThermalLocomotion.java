@@ -14,10 +14,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL_LOCOMOTION;
+import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
+import static cofh.thermal.locomotion.init.TLocEntities.UNDERWATER_CART;
 import static cofh.thermal.locomotion.init.TLocIDs.*;
-import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ENTITY;
 
 @Mod (ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {
@@ -53,7 +53,7 @@ public class ThermalLocomotion {
 
     private void entityRendererSetup(final EntityRenderersEvent.RegisterRenderers event) {
 
-        event.registerEntityRenderer(UNDERWATER_CART_ENTITY, UnderwaterMinecartRenderer::new);
+        event.registerEntityRenderer(UNDERWATER_CART.get(), UnderwaterMinecartRenderer::new);
         // event.registerEntityRenderer(ENERGY_CART_ENTITY, EnergyMinecartRenderer::new);
         // event.registerEntityRenderer(FLUID_CART_ENTITY, FluidMinecartRenderer::new);
     }

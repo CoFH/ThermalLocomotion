@@ -17,7 +17,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
 @OnlyIn (Dist.CLIENT)
 public class UnderwaterMinecartRenderer<T extends AbstractMinecart> extends EntityRenderer<T> {
