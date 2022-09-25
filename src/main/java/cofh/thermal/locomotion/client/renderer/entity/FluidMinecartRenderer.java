@@ -21,7 +21,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
 @OnlyIn (Dist.CLIENT)
 public class FluidMinecartRenderer extends EntityRenderer<FluidMinecart> {

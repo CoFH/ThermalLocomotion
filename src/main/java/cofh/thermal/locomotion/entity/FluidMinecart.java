@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-import static cofh.lib.util.constants.Constants.TANK_MEDIUM;
+import static cofh.lib.util.Constants.TANK_MEDIUM;
 import static cofh.thermal.locomotion.init.TLocReferences.FLUID_CART_ENTITY;
 import static cofh.thermal.locomotion.init.TLocReferences.FLUID_CART_ITEM;
 

@@ -7,7 +7,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.ObjectHolder;
 
-import static cofh.lib.util.constants.Constants.ID_THERMAL;
+import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 import static cofh.thermal.locomotion.init.TLocIDs.*;
 
 @ObjectHolder (ID_THERMAL)
