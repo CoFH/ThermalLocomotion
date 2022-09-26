@@ -1,7 +1,7 @@
 package cofh.thermal.locomotion.data;
 
 import cofh.lib.data.RecipeProviderCoFH;
-import cofh.lib.util.references.CoFHTags;
+import cofh.lib.tags.ItemTagsCoFH;
 import cofh.thermal.lib.common.ThermalFlags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -105,7 +105,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_RAIL), 6)
-                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
                 .define('X', Blocks.RAIL)
                 .pattern("XIX")
                 .pattern("XIX")
@@ -122,7 +122,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), 6)
-                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
                 .define('X', Blocks.ACTIVATOR_RAIL)
                 .pattern("XIX")
                 .pattern("XIX")
@@ -131,7 +131,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), 6)
-                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
                 .define('X', Blocks.DETECTOR_RAIL)
                 .pattern("XIX")
                 .pattern("XIX")
@@ -140,7 +140,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(BLOCKS.get(ID_LUMIUM_POWERED_RAIL), 6)
-                .define('I', CoFHTags.Items.INGOTS_LUMIUM)
+                .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
                 .define('X', Blocks.POWERED_RAIL)
                 .pattern("XIX")
                 .pattern("XIX")

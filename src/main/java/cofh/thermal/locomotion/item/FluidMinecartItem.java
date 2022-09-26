@@ -5,7 +5,7 @@ import cofh.thermal.locomotion.entity.FluidMinecart;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 
-import static cofh.lib.util.references.CoreReferences.HOLDING;
+import static cofh.core.util.references.CoreReferences.HOLDING;
 
 public class FluidMinecartItem extends MinecartItemCoFH {
 
