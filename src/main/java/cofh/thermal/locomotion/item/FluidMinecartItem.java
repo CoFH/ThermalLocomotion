@@ -5,7 +5,7 @@
 //import net.minecraft.world.item.ItemStack;
 //import net.minecraft.world.item.enchantment.Enchantment;
 //
-//import static cofh.lib.util.references.CoreReferences.HOLDING;
+//import static cofh.core.init.CoreEnchantments.HOLDING;
 //
 //public class FluidMinecartItem extends MinecartItemCoFH {
 //
@@ -18,7 +18,7 @@
 //    @Override
 //    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
 //
-//        return enchantment == HOLDING;
+//        return enchantment == HOLDING.get();
 //    }
 //
 //}

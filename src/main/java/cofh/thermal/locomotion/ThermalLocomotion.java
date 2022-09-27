@@ -54,8 +54,8 @@ public class ThermalLocomotion {
     private void entityRendererSetup(final EntityRenderersEvent.RegisterRenderers event) {
 
         event.registerEntityRenderer(UNDERWATER_CART.get(), UnderwaterMinecartRenderer::new);
-        // event.registerEntityRenderer(ENERGY_CART_ENTITY, EnergyMinecartRenderer::new);
-        // event.registerEntityRenderer(FLUID_CART_ENTITY, FluidMinecartRenderer::new);
+        // event.registerEntityRenderer(ENERGY_CART.get(), EnergyMinecartRenderer::new);
+        // event.registerEntityRenderer(FLUID_CART.get(), FluidMinecartRenderer::new);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
