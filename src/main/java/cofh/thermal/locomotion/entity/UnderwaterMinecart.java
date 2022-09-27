@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.entity;
 
-import cofh.lib.entity.AbstractMinecartCoFH;
+import cofh.core.entity.AbstractMinecartCoFH;
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.FluidTags;
@@ -20,27 +20,28 @@ import net.minecraft.world.level.Level;
 import java.util.List;
 import java.util.Map;
 
-import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ENTITY;
-import static cofh.thermal.locomotion.init.TLocReferences.UNDERWATER_CART_ITEM;
+import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.locomotion.init.TLocEntities.UNDERWATER_CART;
+import static cofh.thermal.locomotion.init.TLocIDs.ID_UNDERWATER_CART;
 
-public class UnderwaterMinecartEntity extends AbstractMinecartCoFH {
+public class UnderwaterMinecart extends AbstractMinecartCoFH {
 
     public static final int AIR_SUPPLY_MAX = 4800;
 
     protected int airSupply = AIR_SUPPLY_MAX;
     protected int respirationFactor = 1;
 
-    public UnderwaterMinecartEntity(EntityType<? extends UnderwaterMinecartEntity> type, Level worldIn) {
+    public UnderwaterMinecart(EntityType<? extends UnderwaterMinecart> type, Level worldIn) {
 
         super(type, worldIn);
     }
 
-    public UnderwaterMinecartEntity(Level worldIn, double posX, double posY, double posZ) {
+    public UnderwaterMinecart(Level worldIn, double posX, double posY, double posZ) {
 
-        super(UNDERWATER_CART_ENTITY, worldIn, posX, posY, posZ);
+        super(UNDERWATER_CART.get(), worldIn, posX, posY, posZ);
     }
 
-    public UnderwaterMinecartEntity onPlaced(ItemStack stack) {
+    public UnderwaterMinecart onPlaced(ItemStack stack) {
 
         super.onPlaced(stack);
 
@@ -119,7 +120,7 @@ public class UnderwaterMinecartEntity extends AbstractMinecartCoFH {
     //    }
 
     @Override
-    public boolean canBeRiddenInWater(Entity rider) {
+    public boolean rideableUnderWater() {
 
         return true;
     }
@@ -159,7 +160,7 @@ public class UnderwaterMinecartEntity extends AbstractMinecartCoFH {
     @Override
     public ItemStack getPickResult() {
 
-        return new ItemStack(UNDERWATER_CART_ITEM);
+        return new ItemStack(ITEMS.get(ID_UNDERWATER_CART));
     }
 
     @Override

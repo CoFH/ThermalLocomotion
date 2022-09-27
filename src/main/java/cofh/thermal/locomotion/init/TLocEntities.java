@@ -1,9 +1,10 @@
 package cofh.thermal.locomotion.init;
 
 import cofh.thermal.core.entity.explosive.DetonateUtils;
-import cofh.thermal.locomotion.entity.UnderwaterMinecartEntity;
+import cofh.thermal.locomotion.entity.UnderwaterMinecart;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.registries.RegistryObject;
 
 import static cofh.thermal.core.ThermalCore.ENTITIES;
 import static cofh.thermal.core.util.RegistrationHelper.registerTNTMinecart;
@@ -19,7 +20,6 @@ public class TLocEntities {
 
     public static void register() {
 
-        ENTITIES.register(ID_UNDERWATER_CART, () -> EntityType.Builder.<UnderwaterMinecartEntity>of(UnderwaterMinecartEntity::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_UNDERWATER_CART));
         // ENTITIES.register(ID_ENERGY_CART, () -> EntityType.Builder.<EnergyMinecart>of(EnergyMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_ENERGY_CART));
         // ENTITIES.register(ID_FLUID_CART, () -> EntityType.Builder.<FluidMinecart>of(FluidMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_FLUID_CART));
 
@@ -36,5 +36,7 @@ public class TLocEntities {
         registerTNTMinecart(ID_PHYTO_TNT_CART, ID_PHYTO_TNT, DetonateUtils::phyto, getFlag(FLAG_PHYTOGRO_EXPLOSIVES));
         registerTNTMinecart(ID_NUKE_TNT_CART, ID_NUKE_TNT, DetonateUtils::nuke, getFlag(FLAG_NUCLEAR_EXPLOSIVES));
     }
+
+    public static final RegistryObject<EntityType<UnderwaterMinecart>> UNDERWATER_CART = ENTITIES.register(ID_UNDERWATER_CART, () -> EntityType.Builder.<UnderwaterMinecart>of(UnderwaterMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_UNDERWATER_CART));
 
 }
