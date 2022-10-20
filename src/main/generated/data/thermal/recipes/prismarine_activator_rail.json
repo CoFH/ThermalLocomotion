@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "XSX",
-    "XCX",
-    "XSX"
-  ],
   "key": {
     "C": {
       "item": "minecraft:prismarine_crystals"
@@ -16,8 +11,13 @@
       "item": "minecraft:activator_rail"
     }
   },
+  "pattern": [
+    "XSX",
+    "XCX",
+    "XSX"
+  ],
   "result": {
-    "item": "thermal:prismarine_activator_rail",
-    "count": 6
+    "count": 6,
+    "item": "thermal:prismarine_activator_rail"
   }
 }

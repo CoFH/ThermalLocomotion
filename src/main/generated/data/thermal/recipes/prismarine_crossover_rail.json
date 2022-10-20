@@ -1,9 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "XI",
-    "IX"
-  ],
   "key": {
     "I": {
       "item": "minecraft:stick"
@@ -12,6 +8,10 @@
       "item": "thermal:prismarine_rail"
     }
   },
+  "pattern": [
+    "XI",
+    "IX"
+  ],
   "result": {
     "item": "thermal:prismarine_crossover_rail"
   }

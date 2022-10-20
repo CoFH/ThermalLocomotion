@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "GGG",
-    "GCG",
-    "PPP"
-  ],
   "key": {
     "C": {
       "item": "minecraft:minecart"
@@ -16,6 +11,11 @@
       "item": "minecraft:prismarine"
     }
   },
+  "pattern": [
+    "GGG",
+    "GCG",
+    "PPP"
+  ],
   "result": {
     "item": "thermal:underwater_minecart"
   }
