@@ -1,123 +1,249 @@
-//package cofh.thermal.locomotion.entity;
-//
-//import cofh.core.entity.AbstractMinecartCoFH;
-//import cofh.lib.fluid.FluidStorageCoFH;
-//import net.minecraft.core.Direction;
-//import net.minecraft.nbt.CompoundTag;
-//import net.minecraft.world.entity.EntityType;
-//import net.minecraft.world.item.ItemStack;
-//import net.minecraft.world.item.enchantment.Enchantment;
-//import net.minecraft.world.item.enchantment.EnchantmentHelper;
-//import net.minecraft.world.level.Level;
-//import net.minecraftforge.common.capabilities.Capability;
-//import net.minecraftforge.common.util.LazyOptional;
-//import net.minecraftforge.fluids.FluidStack;
-//import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-//
-//import javax.annotation.Nonnull;
-//import javax.annotation.Nullable;
-//import java.util.Map;
-//
-//import static cofh.lib.util.Constants.TANK_MEDIUM;
-//import static cofh.thermal.locomotion.init.TLocReferences.FLUID_CART_ENTITY;
-//import static cofh.thermal.locomotion.init.TLocReferences.FLUID_CART_ITEM;
-//
-//public class FluidMinecart extends AbstractMinecartCoFH {
-//
-//    public static final int BASE_CAPACITY = TANK_MEDIUM * 8;
-//
-//    protected FluidStorageCoFH fluidStorage = new FluidStorageCoFH(BASE_CAPACITY);
-//
-//    public FluidMinecart(EntityType<? extends FluidMinecart> type, Level worldIn) {
-//
-//        super(type, worldIn);
-//    }
-//
-//    public FluidMinecart(Level worldIn, double posX, double posY, double posZ) {
-//
-//        super(FLUID_CART_ENTITY, worldIn, posX, posY, posZ);
-//    }
-//
-//    public FluidMinecart onPlaced(ItemStack stack) {
-//
-//        super.onPlaced(stack);
-//
-//        Map<Enchantment, Integer> enchantMap = EnchantmentHelper.deserializeEnchantments(enchantments);
-//        float holdingMod = getHoldingMod(enchantMap);
-//        fluidStorage.applyModifiers(holdingMod);
-//
-//        if (stack.getTag() != null) {
-//            fluidStorage.read(stack.getTag());
-//        }
-//        return this;
-//    }
-//
-//    public FluidStack getFluidStack() {
-//
-//        return fluidStorage.getFluidStack();
-//    }
-//
-//    @Override
-//    public ItemStack createItemStackTag(ItemStack stack) {
-//
-//        fluidStorage.write(stack.getOrCreateTag());
-//
-//        return super.createItemStackTag(stack);
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundTag compound) {
-//
-//        super.readAdditionalSaveData(compound);
-//
-//        Map<Enchantment, Integer> enchantMap = EnchantmentHelper.deserializeEnchantments(enchantments);
-//        float holdingMod = getHoldingMod(enchantMap);
-//        fluidStorage.applyModifiers(holdingMod);
-//
-//        fluidStorage.read(compound);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundTag compound) {
-//
-//        super.addAdditionalSaveData(compound);
-//
-//        fluidStorage.write(compound);
-//    }
-//
-//    @Override
-//    public ItemStack getPickResult() {
-//
-//        return new ItemStack(FLUID_CART_ITEM);
-//    }
-//
-//    @Override
-//    public Type getMinecartType() {
-//
-//        return Type.CHEST;
-//    }
-//
-//    // region CAPABILITIES
-//    protected LazyOptional<?> fluidCap = LazyOptional.empty();
-//
-//    @Nonnull
-//    @Override
-//    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-//
-//        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-//            if (!fluidCap.isPresent() && fluidStorage.getCapacity() > 0) {
-//                fluidCap = LazyOptional.of(() -> fluidStorage);
-//            }
-//            return fluidCap.cast();
-//        }
-//        return super.getCapability(cap, side);
-//    }
-//
-//    @Override
-//    public void invalidateCaps() {
-//
-//        super.invalidateCaps();
-//        fluidCap.invalidate();
-//    }
-//    // endregion
-//}
+package cofh.thermal.locomotion.entity;
+
+import cofh.core.fluid.PotionFluid;
+import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.core.util.helpers.FluidHelper;
+import cofh.lib.fluid.FluidStorageCoFH;
+import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.lib.util.Utils;
+import cofh.thermal.lib.entity.AugmentableMinecart;
+import cofh.thermal.locomotion.TLocRefactors;
+import cofh.thermal.locomotion.inventory.container.FluidMinecartContainer;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Map;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
+
+import static cofh.core.util.helpers.AugmentableHelper.getAttributeModWithDefault;
+import static cofh.lib.util.Constants.*;
+import static cofh.lib.util.constants.NBTTags.*;
+import static cofh.thermal.core.ThermalCore.ITEMS;
+import static cofh.thermal.core.config.ThermalCoreConfig.storageAugments;
+import static cofh.thermal.lib.common.ThermalAugmentRules.createAllowValidator;
+import static cofh.thermal.locomotion.init.TLocEntities.FLUID_CART;
+import static cofh.thermal.locomotion.init.TLocIDs.ID_FLUID_CART;
+import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
+import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE;
+
+public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
+
+    public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_UPGRADE, TAG_AUGMENT_TYPE_FLUID);
+
+    public static final int BASE_CAPACITY = TANK_MEDIUM;
+
+    protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(1, (item) -> FluidHelper.hasFluidHandlerCap(item) || item.getItem() == Items.POTION);
+    protected ItemStorageCoFH outputSlot = new ItemStorageCoFH(1, FluidHelper::hasFluidHandlerCap);
+
+    protected FluidStorageCoFH tank = new FluidStorageCoFH(BASE_CAPACITY);
+
+    public FluidMinecart(EntityType<? extends FluidMinecart> type, Level worldIn) {
+
+        super(type, worldIn);
+
+        inventory.addSlot(inputSlot);
+        inventory.addSlot(outputSlot);
+
+        addAugmentSlots(storageAugments);
+    }
+
+    public FluidMinecart(Level worldIn, double posX, double posY, double posZ) {
+
+        super(FLUID_CART.get(), worldIn, posX, posY, posZ);
+
+        inventory.addSlot(inputSlot);
+        inventory.addSlot(outputSlot);
+
+        addAugmentSlots(storageAugments);
+    }
+
+    protected void handleFluid() {
+
+        if (!inputSlot.isEmpty()) {
+            ItemStack inputStack = inputSlot.getItemStack();
+            if (inputStack.getItem() == Items.POTION) {
+                FluidStack potion = PotionFluid.getPotionFluidFromItem(BOTTLE_VOLUME, inputStack);
+                if (tank.fill(potion, SIMULATE) == BOTTLE_VOLUME) {
+                    tank.fill(potion, EXECUTE);
+                    inputSlot.setItemStack(new ItemStack(Items.GLASS_BOTTLE));
+                }
+            } else {
+                inputStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null).ifPresent(c -> {
+                    int toFill = tank.fill(new FluidStack(c.getFluidInTank(0), BUCKET_VOLUME), SIMULATE);
+                    if (toFill > 0) {
+                        tank.fill(c.drain(toFill, EXECUTE), EXECUTE);
+                        inputSlot.setItemStack(c.getContainer());
+                    }
+                });
+            }
+        }
+        if (!outputSlot.isEmpty()) {
+            outputSlot.getItemStack().getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null).ifPresent(c -> {
+                tank.drain(c.fill(new FluidStack(tank.getFluidStack(), Math.min(tank.getAmount(), BUCKET_VOLUME)), EXECUTE), EXECUTE);
+                outputSlot.setItemStack(c.getContainer());
+            });
+        }
+    }
+
+    public FluidStorageCoFH getTank() {
+
+        return tank;
+    }
+
+    @Override
+    protected void defineSynchedData() {
+
+        super.defineSynchedData();
+        this.entityData.define(FLUID_STACK_STORED, FluidStack.EMPTY);
+        this.entityData.define(FLUID_STORED, 0);
+    }
+
+    @Override
+    public FluidMinecart onPlaced(ItemStack stack) {
+
+        if (stack.getTag() != null) {
+            tank.read(stack.getTag());
+        }
+        super.onPlaced(stack);
+        return this;
+    }
+
+    @Override
+    public void tick() {
+
+        if (Utils.isServerWorld(level)) {
+            handleFluid();
+            entityData.set(FLUID_STACK_STORED, tank.getFluidStack());
+            entityData.set(FLUID_STORED, tank.getStored());
+        } else {
+            tank.setFluidStack(entityData.get(FLUID_STACK_STORED));
+            if (!tank.isEmpty()) {
+                tank.getFluidStack().setAmount(entityData.get(FLUID_STORED));
+            }
+        }
+        super.tick();
+    }
+
+    @Override
+    protected Item getDropItem() {
+
+        return ITEMS.get(ID_FLUID_CART);
+    }
+
+    @Override
+    public ItemStack createItemStackTag(ItemStack stack) {
+
+        tank.write(stack.getOrCreateTag());
+        return super.createItemStackTag(stack);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag compound) {
+
+        super.readAdditionalSaveData(compound);
+        tank.read(compound);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag compound) {
+
+        super.addAdditionalSaveData(compound);
+        tank.write(compound);
+    }
+
+    @Override
+    public InteractionResult interact(Player player, InteractionHand hand) {
+
+        if (player.isSecondaryUseActive() || this.isVehicle()) {
+            return InteractionResult.PASS;
+        } else if (!Utils.isClientWorld(level)) {
+            if (attemptFluidHandlerInteraction(player, hand)) {
+                return InteractionResult.SUCCESS;
+            }
+            TLocRefactors.openEntityScreen((ServerPlayer) player, this, this);
+        }
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public ItemStack getPickResult() {
+
+        return new ItemStack(ITEMS.get(ID_FLUID_CART));
+    }
+
+    @Override
+    public Type getMinecartType() {
+
+        return Type.CHEST;
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+
+        return new FluidMinecartContainer(i, inventory, this);
+    }
+
+    // region AUGMENTS
+    @Override
+    protected Predicate<ItemStack> augValidator() {
+
+        return item -> AugmentDataHelper.hasAugmentData(item) && AUG_VALIDATOR.test(item, getAugmentsAsList());
+    }
+
+    @Override
+    protected void finalizeAttributes(Map<Enchantment, Integer> enchantmentMap) {
+
+        float holdingMod = getHoldingMod(enchantmentMap);
+        float baseMod = getAttributeModWithDefault(augmentNBT, TAG_AUGMENT_BASE_MOD, 1.0F);
+        float fluidStorageMod = holdingMod * baseMod * getAttributeModWithDefault(augmentNBT, TAG_AUGMENT_FLUID_STORAGE, 1.0F);
+
+        tank.applyModifiers(fluidStorageMod).setCreative(() -> creativeTanks);
+    }
+    // endregion
+
+    // region CAPABILITIES
+    protected LazyOptional<?> fluidCap = LazyOptional.empty();
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            if (!fluidCap.isPresent() && tank.getCapacity() > 0) {
+                fluidCap = LazyOptional.of(() -> tank);
+            }
+            return fluidCap.cast();
+        }
+        return super.getCapability(cap, side);
+    }
+
+    @Override
+    public void invalidateCaps() {
+
+        super.invalidateCaps();
+        fluidCap.invalidate();
+    }
+    // endregion
+}

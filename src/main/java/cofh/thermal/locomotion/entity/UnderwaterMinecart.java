@@ -135,11 +135,7 @@ public class UnderwaterMinecart extends AbstractMinecartCoFH {
     @Override
     public InteractionResult interact(Player player, InteractionHand hand) {
 
-        InteractionResult ret = super.interact(player, hand);
-        if (ret.consumesAction()) return ret;
-        if (player.isSecondaryUseActive()) {
-            return InteractionResult.PASS;
-        } else if (this.isVehicle()) {
+        if (player.isSecondaryUseActive() || this.isVehicle()) {
             return InteractionResult.PASS;
         } else if (!this.level.isClientSide) {
             return player.startRiding(this) ? InteractionResult.CONSUME : InteractionResult.PASS;

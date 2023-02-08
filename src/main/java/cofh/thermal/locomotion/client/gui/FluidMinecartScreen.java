@@ -1,11 +1,13 @@
 package cofh.thermal.locomotion.client.gui;
 
 import cofh.core.client.gui.ContainerScreenCoFH;
+import cofh.core.client.gui.element.panel.AugmentPanel;
 import cofh.thermal.locomotion.inventory.container.FluidMinecartContainer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
+import static cofh.core.util.helpers.GuiHelper.createMediumFluidStorage;
 import static cofh.core.util.helpers.GuiHelper.generatePanelInfo;
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
@@ -20,7 +22,6 @@ public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartContai
 
         texture = TEXTURE;
         info = generatePanelInfo("info.thermal.fluid_minecart");
-        name = "fluid_minecart";
     }
 
     @Override
@@ -28,7 +29,10 @@ public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartContai
 
         super.init();
 
-        // TODO Tank
+        if (menu.getAugmentSlots().size() > 0) {
+            addPanel(new AugmentPanel(this, menu::getNumAugmentSlots, menu.getAugmentSlots()));
+        }
+        addElement(createMediumFluidStorage(this, 80, 22, menu.cart.getTank()));
     }
 
 }
