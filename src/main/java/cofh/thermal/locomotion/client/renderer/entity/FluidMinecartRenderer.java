@@ -1,5 +1,6 @@
 package cofh.thermal.locomotion.client.renderer.entity;
 
+import cofh.core.util.helpers.FluidHelper;
 import cofh.core.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.locomotion.client.renderer.entity.model.FluidMinecartModel;
@@ -21,6 +22,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fluids.FluidStack;
 
+import static cofh.core.util.helpers.RenderHelper.*;
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
 @OnlyIn (Dist.CLIENT)
@@ -102,7 +104,9 @@ public class FluidMinecartRenderer extends EntityRenderer<FluidMinecart> {
 
         if (!renderFluid.isEmpty()) {
             ivertexbuilder = bufferIn.getBuffer(RenderType.translucent());
-            RenderHelper.renderCuboid(storageAABB, poseStackIn, ivertexbuilder, packedLightIn, 1.0F, 1.0F, 1.0F, 0.8F, RenderHelper.getFluidTexture(renderFluid));
+            int color = FluidHelper.color(renderFluid);
+            setShaderColorFromInt(color);
+            RenderHelper.renderCuboid(storageAABB, poseStackIn, ivertexbuilder, packedLightIn, red(color), green(color), blue(color), 0.8F, RenderHelper.getFluidTexture(renderFluid));
         }
         poseStackIn.popPose();
     }

@@ -1,6 +1,6 @@
 package cofh.thermal.locomotion.init;
 
-import cofh.thermal.locomotion.TLocRefactors;
+import cofh.lib.util.Utils;
 import cofh.thermal.locomotion.entity.EnergyMinecart;
 import cofh.thermal.locomotion.entity.FluidMinecart;
 import cofh.thermal.locomotion.inventory.container.EnergyMinecartContainer;
@@ -23,7 +23,7 @@ public class TLocContainers {
 
     }
 
-    public static final RegistryObject<MenuType<EnergyMinecartContainer>> ENERGY_CART_CONTAINER = CONTAINERS.register(ID_ENERGY_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new EnergyMinecartContainer(windowId, inv, TLocRefactors.getEntityFromBuf(data, EnergyMinecart.class))));
-    public static final RegistryObject<MenuType<FluidMinecartContainer>> FLUID_CART_CONTAINER = CONTAINERS.register(ID_FLUID_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new FluidMinecartContainer(windowId, inv, TLocRefactors.getEntityFromBuf(data, FluidMinecart.class))));
+    public static final RegistryObject<MenuType<EnergyMinecartContainer>> ENERGY_CART_CONTAINER = CONTAINERS.register(ID_ENERGY_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new EnergyMinecartContainer(windowId, inv, Utils.getEntityFromBuf(data, EnergyMinecart.class))));
+    public static final RegistryObject<MenuType<FluidMinecartContainer>> FLUID_CART_CONTAINER = CONTAINERS.register(ID_FLUID_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new FluidMinecartContainer(windowId, inv, Utils.getEntityFromBuf(data, FluidMinecart.class))));
 
 }

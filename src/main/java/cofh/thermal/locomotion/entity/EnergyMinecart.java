@@ -6,7 +6,6 @@ import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.lib.entity.AugmentableMinecart;
 import cofh.thermal.lib.util.ThermalEnergyHelper;
-import cofh.thermal.locomotion.TLocRefactors;
 import cofh.thermal.locomotion.inventory.container.EnergyMinecartContainer;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -155,7 +154,7 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
         if (player.isSecondaryUseActive() || this.isVehicle()) {
             return InteractionResult.PASS;
         } else if (!Utils.isClientWorld(level)) {
-            TLocRefactors.openEntityScreen((ServerPlayer) player, this, this);
+            Utils.openEntityScreen((ServerPlayer) player, this, this);
         }
         return InteractionResult.SUCCESS;
     }

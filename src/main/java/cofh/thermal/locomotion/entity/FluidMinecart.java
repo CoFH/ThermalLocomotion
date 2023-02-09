@@ -7,7 +7,6 @@ import cofh.lib.fluid.FluidStorageCoFH;
 import cofh.lib.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.lib.entity.AugmentableMinecart;
-import cofh.thermal.locomotion.TLocRefactors;
 import cofh.thermal.locomotion.inventory.container.FluidMinecartContainer;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -181,7 +180,7 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
             if (attemptFluidHandlerInteraction(player, hand)) {
                 return InteractionResult.SUCCESS;
             }
-            TLocRefactors.openEntityScreen((ServerPlayer) player, this, this);
+            Utils.openEntityScreen((ServerPlayer) player, this, this);
         }
         return InteractionResult.SUCCESS;
     }

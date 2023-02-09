@@ -1,8 +1,10 @@
-// 1.19.2	2022-10-19T19:53:56.565696	Thermal Locomotion: Recipes
+// 1.19.2	2023-02-08T15:10:40.3055292	Thermal Locomotion: Recipes
 c74b5db064c20b25e08c8751b4b94fcb4f0cd2fb data/thermal/recipes/crossover_rail.json
 7f7896173259ee8c60412c8620e91fbf32bcc1b4 data/thermal/recipes/earth_tnt_minecart.json
 0f538b91a08559dc7d0e4f501290c983c6277285 data/thermal/recipes/ender_tnt_minecart.json
+5dc712d13a304babdb7898621a2a9c0d7ff2350a data/thermal/recipes/energy_minecart.json
 610afb55fa4dd9e86e5a6885176ae0b2cc92c637 data/thermal/recipes/fire_tnt_minecart.json
+3011e6887a621ba08675e90dd9b9418aa4a172b1 data/thermal/recipes/fluid_minecart.json
 d4a429d532c989bc4e6f7d92137d28dc70434afe data/thermal/recipes/glowstone_tnt_minecart.json
 83f9340838b13b0390cc322587d960b4c78bd911 data/thermal/recipes/ice_tnt_minecart.json
 6fe3449d817fde440ad5a2b1d14d75b3b012198a data/thermal/recipes/lightning_tnt_minecart.json

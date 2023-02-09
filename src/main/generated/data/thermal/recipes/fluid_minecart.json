@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:minecart"
+    },
+    "F": {
+      "item": "thermal:fluid_cell_frame"
+    },
+    "I": {
+      "tag": "forge:ingots/bronze"
+    },
+    "R": {
+      "item": "thermal:cured_rubber"
+    }
+  },
+  "pattern": [
+    " F ",
+    "ICI",
+    " R "
+  ],
+  "result": {
+    "item": "thermal:fluid_minecart"
+  }
+}

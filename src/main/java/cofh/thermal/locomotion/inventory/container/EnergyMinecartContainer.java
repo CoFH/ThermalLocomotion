@@ -21,8 +21,8 @@ public class EnergyMinecartContainer extends ContainerCoFH {
 
         InvWrapperCoFH cartInv = new InvWrapperCoFH(this.cart.getItemInv());
 
-        addSlot(new SlotCoFH(cartInv, 0, 35, 35));
-        addSlot(new SlotCoFH(cartInv, 1, 125, 35));
+        addSlot(new SlotCoFH(cartInv, 0, 26, 35));
+        addSlot(new SlotCoFH(cartInv, 1, 134, 35));
 
         bindAugmentSlots(cartInv, 2, this.cart.augSize());
         bindPlayerInventory(inventory);

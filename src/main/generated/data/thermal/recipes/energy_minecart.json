@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:minecart"
+    },
+    "F": {
+      "item": "thermal:energy_cell_frame"
+    },
+    "I": {
+      "tag": "forge:ingots/lead"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    }
+  },
+  "pattern": [
+    " F ",
+    "ICI",
+    " R "
+  ],
+  "result": {
+    "item": "thermal:energy_minecart"
+  }
+}

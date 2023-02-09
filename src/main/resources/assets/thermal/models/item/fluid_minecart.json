@@ -1,0 +1,8 @@
+{
+  "loader": "cofh_core:fluid_container",
+  "parent": "forge:item/default",
+  "textures": {
+    "fluid_mask": "thermal:item/fluid_minecart_mask",
+    "layer0": "thermal:item/fluid_minecart"
+  }
+}

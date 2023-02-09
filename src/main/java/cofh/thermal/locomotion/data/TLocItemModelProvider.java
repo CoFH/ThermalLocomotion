@@ -22,7 +22,6 @@ public class TLocItemModelProvider extends ItemModelProviderCoFH {
 
         generated(reg.getSup(ID_UNDERWATER_CART));
         generated(reg.getSup(ID_ENERGY_CART));
-        generated(reg.getSup(ID_FLUID_CART));
 
         generated(reg.getSup(ID_SLIME_TNT_CART));
         generated(reg.getSup(ID_REDSTONE_TNT_CART));

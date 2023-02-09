@@ -146,6 +146,8 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
 
     private void registerCartRecipes(Consumer<FinishedRecipe> consumer) {
 
+        var reg = ITEMS;
+
         ShapedRecipeBuilder.shaped(ITEMS.get(ID_UNDERWATER_CART))
                 .define('C', Items.MINECART)
                 .define('G', Tags.Items.GLASS)
@@ -153,6 +155,28 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("GGG")
                 .pattern("GCG")
                 .pattern("PPP")
+                .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_ENERGY_CART))
+                .define('C', Items.MINECART)
+                .define('F', reg.get(ID_ENERGY_CELL_FRAME))
+                .define('I', ItemTagsCoFH.INGOTS_LEAD)
+                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .pattern(" F ")
+                .pattern("ICI")
+                .pattern(" R ")
+                .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(ITEMS.get(ID_FLUID_CART))
+                .define('C', Items.MINECART)
+                .define('F', reg.get(ID_FLUID_CELL_FRAME))
+                .define('I', ItemTagsCoFH.INGOTS_BRONZE)
+                .define('R', reg.get("cured_rubber"))
+                .pattern(" F ")
+                .pattern("ICI")
+                .pattern(" R ")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
                 .save(consumer);
 
