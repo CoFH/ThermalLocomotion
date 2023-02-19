@@ -19,7 +19,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
-@OnlyIn (Dist.CLIENT)
 public class UnderwaterMinecartRenderer<T extends AbstractMinecart> extends EntityRenderer<T> {
 
     public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/underwater_minecart.png");

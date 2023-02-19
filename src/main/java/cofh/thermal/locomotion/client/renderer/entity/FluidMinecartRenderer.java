@@ -23,7 +23,7 @@
 //
 //import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 //
-//@OnlyIn (Dist.CLIENT)
+//
 //public class FluidMinecartRenderer extends EntityRenderer<FluidMinecart> {
 //
 //    public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/fluid_minecart.png");
