@@ -17,12 +17,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
-@OnlyIn (Dist.CLIENT)
 public class EnergyMinecartRenderer<T extends AbstractMinecart> extends EntityRenderer<T> {
 
     public static final ResourceLocation TEXTURE = new ResourceLocation(ID_THERMAL + ":textures/entity/energy_minecart.png");
