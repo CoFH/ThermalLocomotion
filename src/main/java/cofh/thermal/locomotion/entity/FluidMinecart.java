@@ -50,7 +50,7 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
 
     public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_UPGRADE, TAG_AUGMENT_TYPE_FLUID);
 
-    public static final int BASE_CAPACITY = TANK_MEDIUM;
+    public static final int BASE_CAPACITY = TANK_MEDIUM * 4;
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(1, (item) -> FluidHelper.hasFluidHandlerCap(item) || item.getItem() == Items.POTION);
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH(1, FluidHelper::hasFluidHandlerCap);
