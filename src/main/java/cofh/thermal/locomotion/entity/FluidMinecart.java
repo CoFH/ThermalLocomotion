@@ -1,6 +1,7 @@
 package cofh.thermal.locomotion.entity;
 
 import cofh.core.fluid.PotionFluid;
+import cofh.core.util.filter.FilterRegistry;
 import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.core.util.helpers.FluidHelper;
 import cofh.lib.fluid.FluidStorageCoFH;
@@ -35,6 +36,7 @@ import java.util.Map;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+import static cofh.core.util.helpers.AugmentableHelper.getAttributeModString;
 import static cofh.core.util.helpers.AugmentableHelper.getAttributeModWithDefault;
 import static cofh.lib.util.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
@@ -48,14 +50,14 @@ import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIM
 
 public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
 
-    public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_UPGRADE, TAG_AUGMENT_TYPE_FLUID);
+    public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_UPGRADE, TAG_AUGMENT_TYPE_FLUID, TAG_AUGMENT_TYPE_FILTER);
 
     public static final int BASE_CAPACITY = TANK_MEDIUM * 4;
 
     protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(1, (item) -> FluidHelper.hasFluidHandlerCap(item) || item.getItem() == Items.POTION);
     protected ItemStorageCoFH outputSlot = new ItemStorageCoFH(1, FluidHelper::hasFluidHandlerCap);
 
-    protected FluidStorageCoFH tank = new FluidStorageCoFH(BASE_CAPACITY);
+    protected FluidStorageCoFH tank = new FluidStorageCoFH(BASE_CAPACITY, fluid -> filter.valid(fluid));
 
     public FluidMinecart(EntityType<? extends FluidMinecart> type, Level worldIn) {
 
@@ -219,6 +221,9 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
         float fluidStorageMod = holdingMod * baseMod * getAttributeModWithDefault(augmentNBT, TAG_AUGMENT_FLUID_STORAGE, 1.0F);
 
         tank.applyModifiers(fluidStorageMod).setCreative(() -> creativeTanks);
+
+        CompoundTag filterNBT = filter.write(new CompoundTag());
+        filter = FilterRegistry.getFilter(getAttributeModString(augmentNBT, TAG_FILTER_TYPE), filterNBT, this);
     }
     // endregion
 

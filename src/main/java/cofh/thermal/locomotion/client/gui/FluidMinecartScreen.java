@@ -1,14 +1,20 @@
 package cofh.thermal.locomotion.client.gui;
 
 import cofh.core.client.gui.ContainerScreenCoFH;
+import cofh.core.client.gui.element.ElementTexture;
 import cofh.core.client.gui.element.panel.AugmentPanel;
+import cofh.core.network.packet.server.FilterableGuiTogglePacket;
+import cofh.core.util.filter.IFilterable;
+import cofh.core.util.helpers.FilterHelper;
 import cofh.thermal.locomotion.inventory.container.FluidMinecartContainer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 
-import static cofh.core.util.helpers.GuiHelper.createMediumFluidStorage;
-import static cofh.core.util.helpers.GuiHelper.generatePanelInfo;
+import java.util.Collections;
+
+import static cofh.core.util.helpers.GuiHelper.*;
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
 public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartContainer> {
@@ -33,6 +39,27 @@ public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartContai
             addPanel(new AugmentPanel(this, menu::getNumAugmentSlots, menu.getAugmentSlots()));
         }
         addElement(createMediumFluidStorage(this, 80, 22, menu.cart.getTank()));
+
+        // Filter Tab
+        addElement(new ElementTexture(this, 4, -21)
+                .setUV(24, 0)
+                .setSize(24, 21)
+                .setTexture(TAB_TOP, 48, 32)
+                .setVisible(() -> FilterHelper.hasFilter((IFilterable) menu.cart)));
+
+        addElement(new ElementTexture(this, 8, -17) {
+
+            @Override
+            public boolean mouseClicked(double mouseX, double mouseY, int mouseButton) {
+
+                FilterableGuiTogglePacket.openFilterGui(menu.cart);
+                return true;
+            }
+        }
+                .setSize(16, 16)
+                .setTexture(NAV_FILTER, 16, 16)
+                .setTooltipFactory((element, mouseX, mouseY) -> menu.cart.getFilter() instanceof MenuProvider menuProvider ? Collections.singletonList(menuProvider.getDisplayName()) : Collections.emptyList())
+                .setVisible(() -> FilterHelper.hasFilter((IFilterable) menu.cart)));
     }
 
 }
