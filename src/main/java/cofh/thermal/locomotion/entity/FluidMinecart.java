@@ -25,9 +25,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -90,7 +90,7 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
                     inputSlot.setItemStack(new ItemStack(Items.GLASS_BOTTLE));
                 }
             } else {
-                inputStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null).ifPresent(c -> {
+                inputStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).ifPresent(c -> {
                     int toFill = tank.fill(new FluidStack(c.getFluidInTank(0), BUCKET_VOLUME), SIMULATE);
                     if (toFill > 0) {
                         tank.fill(c.drain(toFill, EXECUTE), EXECUTE);
@@ -100,7 +100,7 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
             }
         }
         if (!outputSlot.isEmpty()) {
-            outputSlot.getItemStack().getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null).ifPresent(c -> {
+            outputSlot.getItemStack().getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).ifPresent(c -> {
                 tank.drain(c.fill(new FluidStack(tank.getFluidStack(), Math.min(tank.getAmount(), BUCKET_VOLUME)), EXECUTE), EXECUTE);
                 outputSlot.setItemStack(c.getContainer());
             });
@@ -234,7 +234,7 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
 
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+        if (cap == ForgeCapabilities.FLUID_HANDLER) {
             if (!fluidCap.isPresent() && tank.getCapacity() > 0) {
                 fluidCap = LazyOptional.of(() -> tank);
             }

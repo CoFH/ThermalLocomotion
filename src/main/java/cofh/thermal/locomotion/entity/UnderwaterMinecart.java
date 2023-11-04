@@ -127,12 +127,6 @@ public class UnderwaterMinecart extends AbstractMinecartCoFH {
     //    }
 
     @Override
-    public boolean rideableUnderWater() {
-
-        return true;
-    }
-
-    @Override
     public InteractionResult interact(Player player, InteractionHand hand) {
 
         if (player.isSecondaryUseActive() || this.isVehicle()) {

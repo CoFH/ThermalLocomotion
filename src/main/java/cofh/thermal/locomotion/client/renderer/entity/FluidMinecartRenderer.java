@@ -7,7 +7,7 @@ import cofh.thermal.locomotion.client.renderer.entity.model.FluidMinecartModel;
 import cofh.thermal.locomotion.entity.FluidMinecart;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -72,15 +72,15 @@ public class FluidMinecartRenderer extends EntityRenderer<FluidMinecart> {
             }
         }
         poseStackIn.translate(0.0D, 0.375D, 0.0D);
-        poseStackIn.mulPose(Vector3f.YP.rotationDegrees(180.0F - entityYaw));
-        poseStackIn.mulPose(Vector3f.ZP.rotationDegrees(-f3));
+        poseStackIn.mulPose(Axis.YP.rotationDegrees(180.0F - entityYaw));
+        poseStackIn.mulPose(Axis.ZP.rotationDegrees(-f3));
         float f5 = (float) entityIn.getHurtTime() - partialTicks;
         float f6 = entityIn.getDamage() - partialTicks;
         if (f6 < 0.0F) {
             f6 = 0.0F;
         }
         if (f5 > 0.0F) {
-            poseStackIn.mulPose(Vector3f.XP.rotationDegrees(MathHelper.sin(f5) * f5 * f6 / 10.0F * (float) entityIn.getHurtDir()));
+            poseStackIn.mulPose(Axis.XP.rotationDegrees(MathHelper.sin(f5) * f5 * f6 / 10.0F * (float) entityIn.getHurtDir()));
         }
         //        int j = entityIn.getDisplayOffset();
         //        BlockState blockstate = entityIn.getDisplayBlockState();
