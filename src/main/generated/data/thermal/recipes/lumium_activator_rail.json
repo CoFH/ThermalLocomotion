@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "I": {
       "tag": "forge:ingots/lumium"
@@ -16,5 +17,6 @@
   "result": {
     "count": 6,
     "item": "thermal:lumium_activator_rail"
-  }
+  },
+  "show_notification": true
 }

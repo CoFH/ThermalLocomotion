@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "I": {
       "item": "minecraft:stick"
@@ -14,5 +15,6 @@
   ],
   "result": {
     "item": "thermal:crossover_rail"
-  }
+  },
+  "show_notification": true
 }
