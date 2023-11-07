@@ -6,7 +6,7 @@ import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.lib.common.entity.AugmentableMinecart;
 import cofh.thermal.lib.util.ThermalEnergyHelper;
-import cofh.thermal.locomotion.common.inventory.EnergyMinecartContainer;
+import cofh.thermal.locomotion.common.inventory.EnergyMinecartMenu;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -175,7 +175,7 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
 
-        return new EnergyMinecartContainer(i, inventory, this);
+        return new EnergyMinecartMenu(i, inventory, this);
     }
 
     // region AUGMENTS

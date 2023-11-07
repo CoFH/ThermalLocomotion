@@ -6,7 +6,7 @@ import cofh.core.client.gui.element.panel.AugmentPanel;
 import cofh.core.common.network.packet.server.FilterableGuiTogglePacket;
 import cofh.core.util.filter.IFilterable;
 import cofh.core.util.helpers.FilterHelper;
-import cofh.thermal.locomotion.common.inventory.FluidMinecartContainer;
+import cofh.thermal.locomotion.common.inventory.FluidMinecartMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
@@ -17,12 +17,12 @@ import java.util.Collections;
 import static cofh.core.util.helpers.GuiHelper.*;
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
-public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartContainer> {
+public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartMenu> {
 
     public static final String TEX_PATH = ID_THERMAL + ":textures/gui/container/fluid_minecart.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
-    public FluidMinecartScreen(FluidMinecartContainer container, Inventory inv, Component titleIn) {
+    public FluidMinecartScreen(FluidMinecartMenu container, Inventory inv, Component titleIn) {
 
         super(container, inv, titleIn);
 

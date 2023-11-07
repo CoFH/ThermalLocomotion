@@ -2,7 +2,7 @@ package cofh.thermal.locomotion.client.gui;
 
 import cofh.core.client.gui.ContainerScreenCoFH;
 import cofh.core.client.gui.element.panel.AugmentPanel;
-import cofh.thermal.locomotion.common.inventory.EnergyMinecartContainer;
+import cofh.thermal.locomotion.common.inventory.EnergyMinecartMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,12 +11,12 @@ import static cofh.core.util.helpers.GuiHelper.createDefaultEnergyStorage;
 import static cofh.core.util.helpers.GuiHelper.generatePanelInfo;
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 
-public class EnergyMinecartScreen extends ContainerScreenCoFH<EnergyMinecartContainer> {
+public class EnergyMinecartScreen extends ContainerScreenCoFH<EnergyMinecartMenu> {
 
     public static final String TEX_PATH = ID_THERMAL + ":textures/gui/container/energy_minecart.png";
     public static final ResourceLocation TEXTURE = new ResourceLocation(TEX_PATH);
 
-    public EnergyMinecartScreen(EnergyMinecartContainer container, Inventory inv, Component titleIn) {
+    public EnergyMinecartScreen(EnergyMinecartMenu container, Inventory inv, Component titleIn) {
 
         super(container, inv, titleIn);
 

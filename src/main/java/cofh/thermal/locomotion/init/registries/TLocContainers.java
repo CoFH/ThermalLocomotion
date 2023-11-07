@@ -3,8 +3,8 @@ package cofh.thermal.locomotion.init.registries;
 import cofh.lib.util.Utils;
 import cofh.thermal.locomotion.common.entity.EnergyMinecart;
 import cofh.thermal.locomotion.common.entity.FluidMinecart;
-import cofh.thermal.locomotion.common.inventory.EnergyMinecartContainer;
-import cofh.thermal.locomotion.common.inventory.FluidMinecartContainer;
+import cofh.thermal.locomotion.common.inventory.EnergyMinecartMenu;
+import cofh.thermal.locomotion.common.inventory.FluidMinecartMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.RegistryObject;
@@ -23,7 +23,7 @@ public class TLocContainers {
 
     }
 
-    public static final RegistryObject<MenuType<EnergyMinecartContainer>> ENERGY_CART_CONTAINER = CONTAINERS.register(ID_ENERGY_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new EnergyMinecartContainer(windowId, inv, Utils.getEntityFromBuf(data, EnergyMinecart.class))));
-    public static final RegistryObject<MenuType<FluidMinecartContainer>> FLUID_CART_CONTAINER = CONTAINERS.register(ID_FLUID_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new FluidMinecartContainer(windowId, inv, Utils.getEntityFromBuf(data, FluidMinecart.class))));
+    public static final RegistryObject<MenuType<EnergyMinecartMenu>> ENERGY_CART_CONTAINER = CONTAINERS.register(ID_ENERGY_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new EnergyMinecartMenu(windowId, inv, Utils.getEntityFromBuf(data, EnergyMinecart.class))));
+    public static final RegistryObject<MenuType<FluidMinecartMenu>> FLUID_CART_CONTAINER = CONTAINERS.register(ID_FLUID_CART, () -> IForgeMenuType.create((windowId, inv, data) -> new FluidMinecartMenu(windowId, inv, Utils.getEntityFromBuf(data, FluidMinecart.class))));
 
 }
