@@ -1,13 +1,13 @@
-package cofh.thermal.locomotion.item;
+package cofh.thermal.locomotion.common.item;
 
 import cofh.core.util.ProxyUtils;
 import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.core.util.helpers.FluidHelper;
 import cofh.lib.api.item.IColorableItem;
 import cofh.lib.api.item.IFluidContainerItem;
-import cofh.lib.fluid.FluidStorageCoFH;
+import cofh.lib.common.fluid.FluidStorageCoFH;
 import cofh.lib.util.helpers.StringHelper;
-import cofh.thermal.locomotion.entity.FluidMinecart;
+import cofh.thermal.locomotion.common.entity.FluidMinecart;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

@@ -1,6 +1,6 @@
-package cofh.thermal.locomotion.data;
+package cofh.thermal.locomotion.init.data;
 
-import cofh.thermal.locomotion.data.providers.*;
+import cofh.thermal.locomotion.init.data.providers.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;

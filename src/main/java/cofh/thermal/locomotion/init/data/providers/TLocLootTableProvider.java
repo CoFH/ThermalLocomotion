@@ -1,7 +1,7 @@
-package cofh.thermal.locomotion.data.providers;
+package cofh.thermal.locomotion.init.data.providers;
 
-import cofh.lib.data.LootTableProviderCoFH;
-import cofh.thermal.locomotion.data.tables.TLocBlockLootTables;
+import cofh.lib.init.data.LootTableProviderCoFH;
+import cofh.thermal.locomotion.init.data.tables.TLocBlockLootTables;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 

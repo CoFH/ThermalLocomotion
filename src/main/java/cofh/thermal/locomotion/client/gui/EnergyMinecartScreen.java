@@ -2,7 +2,7 @@ package cofh.thermal.locomotion.client.gui;
 
 import cofh.core.client.gui.ContainerScreenCoFH;
 import cofh.core.client.gui.element.panel.AugmentPanel;
-import cofh.thermal.locomotion.inventory.container.EnergyMinecartContainer;
+import cofh.thermal.locomotion.common.inventory.EnergyMinecartContainer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;

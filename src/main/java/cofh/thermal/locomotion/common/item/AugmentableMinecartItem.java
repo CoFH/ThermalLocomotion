@@ -1,8 +1,8 @@
-package cofh.thermal.locomotion.item;
+package cofh.thermal.locomotion.common.item;
 
-import cofh.core.entity.AbstractMinecartCoFH;
-import cofh.core.item.IAugmentableItem;
-import cofh.core.item.MinecartItemCoFH;
+import cofh.core.common.entity.AbstractMinecartCoFH;
+import cofh.core.common.item.IAugmentableItem;
+import cofh.core.common.item.MinecartItemCoFH;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;

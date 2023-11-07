@@ -1,9 +1,9 @@
-package cofh.thermal.locomotion.init;
+package cofh.thermal.locomotion.init.registries;
 
-import cofh.lib.block.CrossoverRailBlock;
-import cofh.lib.block.DetectorRailBlockCoFH;
-import cofh.lib.block.PoweredRailBlockCoFH;
-import cofh.lib.block.RailBlockCoFH;
+import cofh.lib.common.block.CrossoverRailBlock;
+import cofh.lib.common.block.DetectorRailBlockCoFH;
+import cofh.lib.common.block.PoweredRailBlockCoFH;
+import cofh.lib.common.block.RailBlockCoFH;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.Rarity;
@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
 import static cofh.lib.util.helpers.BlockHelper.lightValue;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
-import static cofh.thermal.lib.common.ThermalCreativeTabs.toolsTab;
-import static cofh.thermal.locomotion.init.TLocIDs.*;
+import static cofh.thermal.lib.init.ThermalCreativeTabs.toolsTab;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.of;
 import static net.minecraft.world.level.material.MapColor.NONE;
 

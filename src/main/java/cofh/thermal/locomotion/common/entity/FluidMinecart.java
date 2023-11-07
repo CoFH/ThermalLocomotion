@@ -1,14 +1,14 @@
-package cofh.thermal.locomotion.entity;
+package cofh.thermal.locomotion.common.entity;
 
-import cofh.core.fluid.PotionFluid;
+import cofh.core.common.fluid.PotionFluid;
 import cofh.core.util.filter.FilterRegistry;
 import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.core.util.helpers.FluidHelper;
-import cofh.lib.fluid.FluidStorageCoFH;
-import cofh.lib.inventory.ItemStorageCoFH;
+import cofh.lib.common.fluid.FluidStorageCoFH;
+import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
-import cofh.thermal.lib.entity.AugmentableMinecart;
-import cofh.thermal.locomotion.inventory.container.FluidMinecartContainer;
+import cofh.thermal.lib.common.entity.AugmentableMinecart;
+import cofh.thermal.locomotion.common.inventory.FluidMinecartContainer;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -41,10 +41,10 @@ import static cofh.core.util.helpers.AugmentableHelper.getAttributeModWithDefaul
 import static cofh.lib.util.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.config.ThermalCoreConfig.storageAugments;
-import static cofh.thermal.lib.common.ThermalAugmentRules.createAllowValidator;
-import static cofh.thermal.locomotion.init.TLocEntities.FLUID_CART;
-import static cofh.thermal.locomotion.init.TLocIDs.ID_FLUID_CART;
+import static cofh.thermal.core.common.config.ThermalCoreConfig.storageAugments;
+import static cofh.thermal.lib.util.ThermalAugmentRules.createAllowValidator;
+import static cofh.thermal.locomotion.init.registries.TLocEntities.FLUID_CART;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_FLUID_CART;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE;
 

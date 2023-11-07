@@ -1,6 +1,6 @@
-package cofh.thermal.locomotion.data.providers;
+package cofh.thermal.locomotion.init.data.providers;
 
-import cofh.lib.data.BlockStateProviderCoFH;
+import cofh.lib.init.data.BlockStateProviderCoFH;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

@@ -1,7 +1,7 @@
-package cofh.thermal.locomotion.item;
+package cofh.thermal.locomotion.common.item;
 
-import cofh.core.item.MinecartItemCoFH;
-import cofh.thermal.locomotion.entity.UnderwaterMinecart;
+import cofh.core.common.item.MinecartItemCoFH;
+import cofh.thermal.locomotion.common.entity.UnderwaterMinecart;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;

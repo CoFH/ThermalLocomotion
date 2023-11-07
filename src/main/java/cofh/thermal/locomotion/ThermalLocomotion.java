@@ -8,10 +8,10 @@ import cofh.thermal.locomotion.client.renderer.entity.UnderwaterMinecartRenderer
 import cofh.thermal.locomotion.client.renderer.entity.model.EnergyMinecartModel;
 import cofh.thermal.locomotion.client.renderer.entity.model.FluidMinecartModel;
 import cofh.thermal.locomotion.client.renderer.entity.model.UnderwaterMinecartModel;
-import cofh.thermal.locomotion.init.TLocBlocks;
-import cofh.thermal.locomotion.init.TLocContainers;
-import cofh.thermal.locomotion.init.TLocEntities;
-import cofh.thermal.locomotion.init.TLocItems;
+import cofh.thermal.locomotion.init.registries.TLocBlocks;
+import cofh.thermal.locomotion.init.registries.TLocContainers;
+import cofh.thermal.locomotion.init.registries.TLocEntities;
+import cofh.thermal.locomotion.init.registries.TLocItems;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -24,10 +24,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.locomotion.init.TLocContainers.ENERGY_CART_CONTAINER;
-import static cofh.thermal.locomotion.init.TLocContainers.FLUID_CART_CONTAINER;
-import static cofh.thermal.locomotion.init.TLocEntities.*;
-import static cofh.thermal.locomotion.init.TLocIDs.*;
+import static cofh.thermal.locomotion.init.registries.TLocContainers.ENERGY_CART_CONTAINER;
+import static cofh.thermal.locomotion.init.registries.TLocContainers.FLUID_CART_CONTAINER;
+import static cofh.thermal.locomotion.init.registries.TLocEntities.*;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 
 @Mod (ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {

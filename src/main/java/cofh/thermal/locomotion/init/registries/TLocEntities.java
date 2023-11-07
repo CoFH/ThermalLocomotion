@@ -1,19 +1,19 @@
-package cofh.thermal.locomotion.init;
+package cofh.thermal.locomotion.init.registries;
 
-import cofh.thermal.core.entity.explosive.DetonateUtils;
-import cofh.thermal.locomotion.entity.EnergyMinecart;
-import cofh.thermal.locomotion.entity.FluidMinecart;
-import cofh.thermal.locomotion.entity.UnderwaterMinecart;
+import cofh.thermal.core.common.entity.explosive.DetonateUtils;
+import cofh.thermal.locomotion.common.entity.EnergyMinecart;
+import cofh.thermal.locomotion.common.entity.FluidMinecart;
+import cofh.thermal.locomotion.common.entity.UnderwaterMinecart;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.registries.RegistryObject;
 
 import static cofh.thermal.core.ThermalCore.ENTITIES;
 import static cofh.thermal.core.util.RegistrationHelper.registerTNTMinecart;
-import static cofh.thermal.lib.common.ThermalCreativeTabs.toolsTab;
-import static cofh.thermal.lib.common.ThermalFlags.*;
-import static cofh.thermal.lib.common.ThermalIDs.*;
-import static cofh.thermal.locomotion.init.TLocIDs.*;
+import static cofh.thermal.lib.init.ThermalCreativeTabs.toolsTab;
+import static cofh.thermal.lib.init.ThermalFlags.*;
+import static cofh.thermal.lib.init.ThermalIDs.*;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 
 public class TLocEntities {
 

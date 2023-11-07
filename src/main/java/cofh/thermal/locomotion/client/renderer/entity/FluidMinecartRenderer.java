@@ -4,7 +4,7 @@ import cofh.core.util.helpers.FluidHelper;
 import cofh.core.util.helpers.RenderHelper;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.thermal.locomotion.client.renderer.entity.model.FluidMinecartModel;
-import cofh.thermal.locomotion.entity.FluidMinecart;
+import cofh.thermal.locomotion.common.entity.FluidMinecart;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;

@@ -1,6 +1,6 @@
-package cofh.thermal.locomotion.entity;
+package cofh.thermal.locomotion.common.entity;
 
-import cofh.core.entity.AbstractMinecartCoFH;
+import cofh.core.common.entity.AbstractMinecartCoFH;
 import cofh.lib.util.Utils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.FluidTags;
@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.locomotion.init.TLocEntities.UNDERWATER_CART;
-import static cofh.thermal.locomotion.init.TLocIDs.ID_UNDERWATER_CART;
+import static cofh.thermal.locomotion.init.registries.TLocEntities.UNDERWATER_CART;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_UNDERWATER_CART;
 
 public class UnderwaterMinecart extends AbstractMinecartCoFH {
 

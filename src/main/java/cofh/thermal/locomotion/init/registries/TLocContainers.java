@@ -1,17 +1,17 @@
-package cofh.thermal.locomotion.init;
+package cofh.thermal.locomotion.init.registries;
 
 import cofh.lib.util.Utils;
-import cofh.thermal.locomotion.entity.EnergyMinecart;
-import cofh.thermal.locomotion.entity.FluidMinecart;
-import cofh.thermal.locomotion.inventory.container.EnergyMinecartContainer;
-import cofh.thermal.locomotion.inventory.container.FluidMinecartContainer;
+import cofh.thermal.locomotion.common.entity.EnergyMinecart;
+import cofh.thermal.locomotion.common.entity.FluidMinecart;
+import cofh.thermal.locomotion.common.inventory.EnergyMinecartContainer;
+import cofh.thermal.locomotion.common.inventory.FluidMinecartContainer;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.RegistryObject;
 
 import static cofh.thermal.core.ThermalCore.CONTAINERS;
-import static cofh.thermal.locomotion.init.TLocIDs.ID_ENERGY_CART;
-import static cofh.thermal.locomotion.init.TLocIDs.ID_FLUID_CART;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_ENERGY_CART;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_FLUID_CART;
 
 public class TLocContainers {
 

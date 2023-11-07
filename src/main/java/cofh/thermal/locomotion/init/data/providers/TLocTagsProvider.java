@@ -1,4 +1,4 @@
-package cofh.thermal.locomotion.data.providers;
+package cofh.thermal.locomotion.init.data.providers;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
-import static cofh.thermal.locomotion.init.TLocIDs.*;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 
 public class TLocTagsProvider {
 

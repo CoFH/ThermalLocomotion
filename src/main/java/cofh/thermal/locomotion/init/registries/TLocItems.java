@@ -1,19 +1,19 @@
-package cofh.thermal.locomotion.init;
+package cofh.thermal.locomotion.init.registries;
 
-import cofh.thermal.core.config.ThermalCoreConfig;
-import cofh.thermal.locomotion.entity.FluidMinecart;
-import cofh.thermal.locomotion.item.EnergyMinecartItem;
-import cofh.thermal.locomotion.item.FluidMinecartItem;
-import cofh.thermal.locomotion.item.UnderwaterMinecartItem;
+import cofh.thermal.core.common.config.ThermalCoreConfig;
+import cofh.thermal.locomotion.common.entity.FluidMinecart;
+import cofh.thermal.locomotion.common.item.EnergyMinecartItem;
+import cofh.thermal.locomotion.common.item.FluidMinecartItem;
+import cofh.thermal.locomotion.common.item.UnderwaterMinecartItem;
 import net.minecraft.world.item.Item;
 
 import java.util.function.IntSupplier;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.util.RegistrationHelper.registerItem;
-import static cofh.thermal.lib.common.ThermalAugmentRules.ENERGY_STORAGE_VALIDATOR;
-import static cofh.thermal.lib.common.ThermalCreativeTabs.toolsTab;
-import static cofh.thermal.locomotion.init.TLocIDs.*;
+import static cofh.thermal.lib.init.ThermalCreativeTabs.toolsTab;
+import static cofh.thermal.lib.util.ThermalAugmentRules.ENERGY_STORAGE_VALIDATOR;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 
 public class TLocItems {
 

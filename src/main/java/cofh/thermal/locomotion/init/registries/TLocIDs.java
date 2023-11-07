@@ -1,4 +1,4 @@
-package cofh.thermal.locomotion.init;
+package cofh.thermal.locomotion.init.registries;
 
 public class TLocIDs {
 

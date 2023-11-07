@@ -1,10 +1,10 @@
-package cofh.thermal.locomotion.data.tables;
+package cofh.thermal.locomotion.init.data.tables;
 
-import cofh.lib.data.loot.BlockLootSubProviderCoFH;
+import cofh.lib.init.data.loot.BlockLootSubProviderCoFH;
 
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.locomotion.init.TLocIDs.*;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 
 public class TLocBlockLootTables extends BlockLootSubProviderCoFH {
 

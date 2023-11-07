@@ -1,8 +1,8 @@
-package cofh.thermal.locomotion.data.providers;
+package cofh.thermal.locomotion.init.data.providers;
 
-import cofh.lib.data.RecipeProviderCoFH;
-import cofh.lib.tags.ItemTagsCoFH;
-import cofh.thermal.lib.common.ThermalFlags;
+import cofh.lib.init.data.RecipeProviderCoFH;
+import cofh.lib.init.tags.ItemTagsCoFH;
+import cofh.thermal.lib.init.ThermalFlags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -15,9 +15,9 @@ import java.util.function.Consumer;
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.lib.common.ThermalFlags.*;
-import static cofh.thermal.lib.common.ThermalIDs.*;
-import static cofh.thermal.locomotion.init.TLocIDs.*;
+import static cofh.thermal.lib.init.ThermalFlags.*;
+import static cofh.thermal.lib.init.ThermalIDs.*;
+import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 import static net.minecraft.data.recipes.RecipeCategory.MISC;
 import static net.minecraft.data.recipes.RecipeCategory.TOOLS;
 

@@ -1,13 +1,13 @@
-package cofh.thermal.locomotion.inventory.container;
+package cofh.thermal.locomotion.common.inventory;
 
-import cofh.core.inventory.container.ContainerCoFH;
-import cofh.lib.inventory.container.slot.SlotCoFH;
-import cofh.lib.inventory.wrapper.InvWrapperCoFH;
-import cofh.thermal.locomotion.entity.FluidMinecart;
+import cofh.core.common.inventory.ContainerCoFH;
+import cofh.lib.common.inventory.SlotCoFH;
+import cofh.lib.common.inventory.wrapper.InvWrapperCoFH;
+import cofh.thermal.locomotion.common.entity.FluidMinecart;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 
-import static cofh.thermal.locomotion.init.TLocContainers.FLUID_CART_CONTAINER;
+import static cofh.thermal.locomotion.init.registries.TLocContainers.FLUID_CART_CONTAINER;
 
 public class FluidMinecartContainer extends ContainerCoFH {
 

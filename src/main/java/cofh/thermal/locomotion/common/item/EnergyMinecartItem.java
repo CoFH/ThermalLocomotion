@@ -1,9 +1,9 @@
-package cofh.thermal.locomotion.item;
+package cofh.thermal.locomotion.common.item;
 
 import cofh.core.util.helpers.AugmentDataHelper;
-import cofh.lib.energy.EnergyStorageCoFH;
-import cofh.thermal.lib.item.IFlexibleEnergyContainerItem;
-import cofh.thermal.locomotion.entity.EnergyMinecart;
+import cofh.lib.common.energy.EnergyStorageCoFH;
+import cofh.thermal.lib.common.item.IFlexibleEnergyContainerItem;
+import cofh.thermal.locomotion.common.entity.EnergyMinecart;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
