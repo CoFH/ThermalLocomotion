@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
 import static cofh.lib.util.helpers.BlockHelper.lightValue;
+import static cofh.thermal.core.init.registries.ThermalCreativeTabs.toolsTab;
 import static cofh.thermal.core.util.RegistrationHelper.registerBlock;
-import static cofh.thermal.lib.init.ThermalCreativeTabs.toolsTab;
 import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.of;
 import static net.minecraft.world.level.material.MapColor.NONE;

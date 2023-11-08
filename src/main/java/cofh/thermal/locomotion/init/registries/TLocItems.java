@@ -10,8 +10,8 @@ import net.minecraft.world.item.Item;
 import java.util.function.IntSupplier;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
+import static cofh.thermal.core.init.registries.ThermalCreativeTabs.toolsTab;
 import static cofh.thermal.core.util.RegistrationHelper.registerItem;
-import static cofh.thermal.lib.init.ThermalCreativeTabs.toolsTab;
 import static cofh.thermal.lib.util.ThermalAugmentRules.ENERGY_STORAGE_VALIDATOR;
 import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 
