@@ -21,7 +21,7 @@ Contains the "railyard" of the Thermal Series - Rails and Minecarts to expand ra
 [[dependencies.thermal_locomotion]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[${mc_version},)"
+versionRange = "1.20.1"
 ordering = "AFTER"
 side = "BOTH"
 
