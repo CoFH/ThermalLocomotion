@@ -25,9 +25,9 @@ public class TLocItems {
 
         IntSupplier storageAugs = () -> ThermalCoreConfig.storageAugments;
 
-        toolsTab(200, registerItem(ID_UNDERWATER_CART, () -> new UnderwaterMinecartItem(new Item.Properties()).setModId(ID_THERMAL_LOCOMOTION)));
-        toolsTab(200, registerItem(ID_ENERGY_CART, () -> new EnergyMinecartItem(new Item.Properties()).setNumSlots(storageAugs).setAugValidator(ENERGY_STORAGE_VALIDATOR).setModId(ID_THERMAL_LOCOMOTION)));
-        toolsTab(200, registerItem(ID_FLUID_CART, () -> new FluidMinecartItem(new Item.Properties()).setNumSlots(storageAugs).setAugValidator(FluidMinecart.AUG_VALIDATOR).setModId(ID_THERMAL_LOCOMOTION)));
+        toolsTab(150, registerItem(ID_UNDERWATER_CART, () -> new UnderwaterMinecartItem(new Item.Properties()).setModId(ID_THERMAL_LOCOMOTION)));
+        toolsTab(150, registerItem(ID_ENERGY_CART, () -> new EnergyMinecartItem(new Item.Properties()).setNumSlots(storageAugs).setAugValidator(ENERGY_STORAGE_VALIDATOR).setModId(ID_THERMAL_LOCOMOTION)));
+        toolsTab(150, registerItem(ID_FLUID_CART, () -> new FluidMinecartItem(new Item.Properties()).setNumSlots(storageAugs).setAugValidator(FluidMinecart.AUG_VALIDATOR).setModId(ID_THERMAL_LOCOMOTION)));
     }
 
 }
