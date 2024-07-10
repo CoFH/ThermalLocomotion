@@ -6,8 +6,8 @@ import cofh.thermal.locomotion.common.entity.FluidMinecart;
 import cofh.thermal.locomotion.common.inventory.EnergyMinecartMenu;
 import cofh.thermal.locomotion.common.inventory.FluidMinecartMenu;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.extensions.IForgeMenuType;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import static cofh.thermal.core.ThermalCore.CONTAINERS;
 import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_ENERGY_CART;

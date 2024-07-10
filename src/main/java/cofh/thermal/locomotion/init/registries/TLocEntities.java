@@ -6,7 +6,7 @@ import cofh.thermal.locomotion.common.entity.FluidMinecart;
 import cofh.thermal.locomotion.common.entity.UnderwaterMinecart;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.RegistryObject;
 
 import static cofh.thermal.core.ThermalCore.ENTITIES;
 import static cofh.thermal.core.init.registries.ThermalCreativeTabs.toolsTab;
