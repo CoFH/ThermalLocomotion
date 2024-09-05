@@ -9,7 +9,7 @@
       "item": "thermal:fluid_cell_frame"
     },
     "I": {
-      "tag": "forge:ingots/bronze"
+      "tag": "c:ingots/bronze"
     },
     "R": {
       "item": "thermal:cured_rubber"
@@ -22,6 +22,5 @@
   ],
   "result": {
     "item": "thermal:fluid_minecart"
-  },
-  "show_notification": true
+  }
 }

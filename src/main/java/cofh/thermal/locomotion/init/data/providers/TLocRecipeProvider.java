@@ -1,16 +1,14 @@
 package cofh.thermal.locomotion.init.data.providers;
 
+import cofh.lib.common.conditions.FlagSetCondition;
 import cofh.lib.init.data.RecipeProviderCoFH;
 import cofh.lib.init.tags.ItemTagsCoFH;
-import cofh.thermal.lib.util.ThermalFlags;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-
-import java.util.function.Consumer;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
@@ -26,18 +24,17 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
     public TLocRecipeProvider(PackOutput output) {
 
         super(output, ID_THERMAL);
-        manager = ThermalFlags.manager();
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput recipeOutput) {
 
-        registerRailRecipes(consumer);
-        registerCartRecipes(consumer);
+        registerRailRecipes(recipeOutput);
+        registerCartRecipes(recipeOutput);
     }
 
     // region HELPERS
-    private void registerRailRecipes(Consumer<FinishedRecipe> consumer) {
+    private void registerRailRecipes(RecipeOutput recipeOutput) {
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_CROSSOVER_RAIL))
                 .define('I', Items.STICK)
@@ -45,7 +42,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XI")
                 .pattern("IX")
                 .unlockedBy(getHasName(Items.RAIL), has(Items.RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_PRISMARINE_RAIL), 6)
                 .define('C', Items.PRISMARINE_CRYSTALS)
@@ -55,7 +52,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XCX")
                 .pattern("XSX")
                 .unlockedBy(getHasName(Items.RAIL), has(Items.RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_PRISMARINE_CROSSOVER_RAIL))
                 .define('I', Items.STICK)
@@ -63,7 +60,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XI")
                 .pattern("IX")
                 .unlockedBy(getHasName(BLOCKS.get(ID_PRISMARINE_RAIL)), has(ITEMS.get(ID_PRISMARINE_RAIL)))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_PRISMARINE_ACTIVATOR_RAIL), 6)
                 .define('C', Items.PRISMARINE_CRYSTALS)
@@ -73,7 +70,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XCX")
                 .pattern("XSX")
                 .unlockedBy(getHasName(Items.ACTIVATOR_RAIL), has(Items.ACTIVATOR_RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_PRISMARINE_DETECTOR_RAIL), 6)
                 .define('C', Items.PRISMARINE_CRYSTALS)
@@ -83,7 +80,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XCX")
                 .pattern("XSX")
                 .unlockedBy(getHasName(Items.DETECTOR_RAIL), has(Items.DETECTOR_RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_PRISMARINE_POWERED_RAIL), 6)
                 .define('C', Items.PRISMARINE_CRYSTALS)
@@ -93,7 +90,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XCX")
                 .pattern("XSX")
                 .unlockedBy(getHasName(Items.POWERED_RAIL), has(Items.POWERED_RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_LUMIUM_RAIL), 6)
                 .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
@@ -102,7 +99,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XIX")
                 .pattern("XIX")
                 .unlockedBy(getHasName(Items.RAIL), has(Items.RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_LUMIUM_CROSSOVER_RAIL))
                 .define('I', Items.STICK)
@@ -110,7 +107,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XI")
                 .pattern("IX")
                 .unlockedBy(getHasName(BLOCKS.get(ID_LUMIUM_RAIL)), has(ITEMS.get(ID_LUMIUM_RAIL)))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_LUMIUM_ACTIVATOR_RAIL), 6)
                 .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
@@ -119,7 +116,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XIX")
                 .pattern("XIX")
                 .unlockedBy(getHasName(Items.ACTIVATOR_RAIL), has(Items.ACTIVATOR_RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_LUMIUM_DETECTOR_RAIL), 6)
                 .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
@@ -128,7 +125,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XIX")
                 .pattern("XIX")
                 .unlockedBy(getHasName(Items.DETECTOR_RAIL), has(Items.DETECTOR_RAIL))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(MISC, BLOCKS.get(ID_LUMIUM_POWERED_RAIL), 6)
                 .define('I', ItemTagsCoFH.INGOTS_LUMIUM)
@@ -137,10 +134,10 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("XIX")
                 .pattern("XIX")
                 .unlockedBy(getHasName(Items.POWERED_RAIL), has(Items.POWERED_RAIL))
-                .save(consumer);
+                .save(recipeOutput);
     }
 
-    private void registerCartRecipes(Consumer<FinishedRecipe> consumer) {
+    private void registerCartRecipes(RecipeOutput recipeOutput) {
 
         var reg = ITEMS;
 
@@ -152,7 +149,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("GCG")
                 .pattern("PPP")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_ENERGY_CART))
                 .define('C', Items.MINECART)
@@ -163,7 +160,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("ICI")
                 .pattern(" R ")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_FLUID_CART))
                 .define('C', Items.MINECART)
@@ -174,7 +171,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("ICI")
                 .pattern(" R ")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(consumer);
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_SLIME_TNT_CART))
                 .define('A', ITEMS.get(ID_SLIME_TNT))
@@ -182,7 +179,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_BASIC_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_REDSTONE_TNT_CART))
                 .define('A', ITEMS.get(ID_REDSTONE_TNT))
@@ -190,7 +187,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_BASIC_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_GLOWSTONE_TNT_CART))
                 .define('A', ITEMS.get(ID_GLOWSTONE_TNT))
@@ -198,7 +195,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_BASIC_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_ENDER_TNT_CART))
                 .define('A', ITEMS.get(ID_ENDER_TNT))
@@ -206,7 +203,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_BASIC_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_BASIC_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_PHYTO_TNT_CART))
                 .define('A', ITEMS.get(ID_PHYTO_TNT))
@@ -214,7 +211,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_PHYTOGRO_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_PHYTOGRO_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_FIRE_TNT_CART))
                 .define('A', ITEMS.get(ID_FIRE_TNT))
@@ -222,7 +219,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_ELEMENTAL_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_EARTH_TNT_CART))
                 .define('A', ITEMS.get(ID_EARTH_TNT))
@@ -230,7 +227,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_ELEMENTAL_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_ICE_TNT_CART))
                 .define('A', ITEMS.get(ID_ICE_TNT))
@@ -238,7 +235,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_ELEMENTAL_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_LIGHTNING_TNT_CART))
                 .define('A', ITEMS.get(ID_LIGHTNING_TNT))
@@ -246,7 +243,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_ELEMENTAL_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_ELEMENTAL_EXPLOSIVES)));
 
         ShapedRecipeBuilder.shaped(TOOLS, ITEMS.get(ID_NUKE_TNT_CART))
                 .define('A', ITEMS.get(ID_NUKE_TNT))
@@ -254,7 +251,7 @@ public class TLocRecipeProvider extends RecipeProviderCoFH {
                 .pattern("A")
                 .pattern("B")
                 .unlockedBy(getHasName(Items.MINECART), has(Items.MINECART))
-                .save(withConditions(consumer).flag(FLAG_NUCLEAR_EXPLOSIVES));
+                .save(recipeOutput.withConditions(new FlagSetCondition(FLAG_NUCLEAR_EXPLOSIVES)));
     }
     // endregion
 }

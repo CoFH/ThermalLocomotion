@@ -1,12 +1,12 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "conditions": [
+  "neoforge:conditions": [
     {
-      "type": "thermal:flag",
-      "flag": "basic_explosives"
+      "type": "cofh_core:flag_set",
+      "flag": "thermal:basic_explosives"
     }
   ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "A": {
       "item": "thermal:ender_tnt"
@@ -21,6 +21,5 @@
   ],
   "result": {
     "item": "thermal:ender_tnt_minecart"
-  },
-  "show_notification": true
+  }
 }

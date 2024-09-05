@@ -1,13 +1,12 @@
 package cofh.thermal.locomotion.common.entity;
 
 import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.core.util.helpers.EnergyHelper;
 import cofh.lib.common.energy.EnergyStorageCoFH;
 import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.lib.common.entity.AugmentableMinecart;
-import cofh.thermal.lib.util.ThermalEnergyHelper;
 import cofh.thermal.locomotion.common.inventory.EnergyMinecartMenu;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -21,10 +20,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.capabilities.Capabilities;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -42,8 +39,8 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
     public static final int BASE_CAPACITY = 1000000;
     public static final int BASE_XFER = 1000;
 
-    protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(1, ThermalEnergyHelper::hasEnergyHandlerCap);
-    protected ItemStorageCoFH outputSlot = new ItemStorageCoFH(1, ThermalEnergyHelper::hasEnergyHandlerCap);
+    protected ItemStorageCoFH inputSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
+    protected ItemStorageCoFH outputSlot = new ItemStorageCoFH(1, EnergyHelper::hasEnergyHandlerCap);
 
     protected EnergyStorageCoFH energyStorage = new EnergyStorageCoFH(BASE_CAPACITY, BASE_XFER);
 
@@ -74,16 +71,16 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
     protected void handleEnergy() {
 
         if (!inputSlot.isEmpty()) {
-            int maxTransfer = Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace());
-            inputSlot.getItemStack()
-                    .getCapability(ThermalEnergyHelper.getBaseEnergySystem(), null)
-                    .ifPresent(c -> energyStorage.receiveEnergy(c.extractEnergy(maxTransfer, false), false));
+            var handler = inputSlot.getItemStack().getCapability(Capabilities.EnergyStorage.ITEM);
+            if (handler != null) {
+                energyStorage.receiveEnergy(handler.extractEnergy(Math.min(energyStorage.getMaxReceive(), energyStorage.getSpace()), false), false);
+            }
         }
         if (!outputSlot.isEmpty()) {
-            int maxTransfer = Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored());
-            outputSlot.getItemStack()
-                    .getCapability(ThermalEnergyHelper.getBaseEnergySystem(), null)
-                    .ifPresent(c -> energyStorage.extractEnergy(c.receiveEnergy(maxTransfer, false), false));
+            var handler = outputSlot.getItemStack().getCapability(Capabilities.EnergyStorage.ITEM);
+            if (handler != null) {
+                energyStorage.extractEnergy(handler.receiveEnergy(Math.min(energyStorage.getMaxExtract(), energyStorage.getEnergyStored()), false), false);
+            }
         }
     }
 
@@ -194,30 +191,6 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
         float energyXferMod = baseMod * getAttributeModWithDefault(augmentNBT, TAG_AUGMENT_RF_XFER, 1.0F);
 
         energyStorage.applyModifiers(energyStorageMod, energyXferMod).setCreative(() -> creativeEnergy);
-    }
-    // endregion
-
-    // region CAPABILITIES
-    protected LazyOptional<?> energyCap = LazyOptional.empty();
-
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-
-        if (cap == ThermalEnergyHelper.getBaseEnergySystem()) {
-            if (!energyCap.isPresent() && energyStorage.getCapacity() > 0) {
-                energyCap = LazyOptional.of(() -> energyStorage);
-            }
-            return energyCap.cast();
-        }
-        return super.getCapability(cap, side);
-    }
-
-    @Override
-    public void invalidateCaps() {
-
-        super.invalidateCaps();
-        energyCap.invalidate();
     }
     // endregion
 }

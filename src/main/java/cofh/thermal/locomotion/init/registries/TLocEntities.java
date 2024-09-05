@@ -6,8 +6,10 @@ import cofh.thermal.locomotion.common.entity.FluidMinecart;
 import cofh.thermal.locomotion.common.entity.UnderwaterMinecart;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.neoforged.neoforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
+
+import static cofh.lib.util.FlagManager.getFlag;
 import static cofh.thermal.core.ThermalCore.ENTITIES;
 import static cofh.thermal.core.init.registries.ThermalCreativeTabs.toolsTab;
 import static cofh.thermal.core.util.RegistrationHelper.registerTNTMinecart;
@@ -35,8 +37,8 @@ public class TLocEntities {
         toolsTab(202, registerTNTMinecart(ID_NUKE_TNT_CART, ID_NUKE_TNT, DetonateUtils::nuke), getFlag(FLAG_NUCLEAR_EXPLOSIVES));
     }
 
-    public static final RegistryObject<EntityType<UnderwaterMinecart>> UNDERWATER_CART = ENTITIES.register(ID_UNDERWATER_CART, () -> EntityType.Builder.<UnderwaterMinecart>of(UnderwaterMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_UNDERWATER_CART));
-    public static final RegistryObject<EntityType<EnergyMinecart>> ENERGY_CART = ENTITIES.register(ID_ENERGY_CART, () -> EntityType.Builder.<EnergyMinecart>of(EnergyMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_ENERGY_CART));
-    public static final RegistryObject<EntityType<FluidMinecart>> FLUID_CART = ENTITIES.register(ID_FLUID_CART, () -> EntityType.Builder.<FluidMinecart>of(FluidMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_FLUID_CART));
+    public static final Supplier<EntityType<UnderwaterMinecart>> UNDERWATER_CART = ENTITIES.register(ID_UNDERWATER_CART, () -> EntityType.Builder.<UnderwaterMinecart>of(UnderwaterMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_UNDERWATER_CART));
+    public static final Supplier<EntityType<EnergyMinecart>> ENERGY_CART = ENTITIES.register(ID_ENERGY_CART, () -> EntityType.Builder.<EnergyMinecart>of(EnergyMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_ENERGY_CART));
+    public static final Supplier<EntityType<FluidMinecart>> FLUID_CART = ENTITIES.register(ID_FLUID_CART, () -> EntityType.Builder.<FluidMinecart>of(FluidMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_FLUID_CART));
 
 }

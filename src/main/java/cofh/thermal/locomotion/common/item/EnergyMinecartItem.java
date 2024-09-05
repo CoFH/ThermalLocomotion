@@ -1,8 +1,8 @@
 package cofh.thermal.locomotion.common.item;
 
 import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.lib.api.item.IEnergyContainerItem;
 import cofh.lib.common.energy.EnergyStorageCoFH;
-import cofh.thermal.lib.common.item.IFlexibleEnergyContainerItem;
 import cofh.thermal.locomotion.common.entity.EnergyMinecart;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -20,7 +20,7 @@ import static cofh.lib.api.ContainerType.ENERGY;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.StringHelper.*;
 
-public class EnergyMinecartItem extends AugmentableMinecartItem implements IFlexibleEnergyContainerItem {
+public class EnergyMinecartItem extends AugmentableMinecartItem implements IEnergyContainerItem {
 
     public EnergyMinecartItem(Properties builder) {
 

@@ -15,12 +15,12 @@ import cofh.thermal.locomotion.init.registries.TLocItems;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
 import static cofh.thermal.core.ThermalCore.BLOCKS;
@@ -32,11 +32,9 @@ import static cofh.thermal.locomotion.init.registries.TLocIDs.*;
 @Mod (ID_THERMAL_LOCOMOTION)
 public class ThermalLocomotion {
 
-    public ThermalLocomotion() {
+    public ThermalLocomotion(ModContainer modContainer, IEventBus modEventBus) {
 
         setFeatureFlags();
-
-        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::entityLayerSetup);
         modEventBus.addListener(this::entityRendererSetup);

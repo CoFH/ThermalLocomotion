@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "I": {
-      "tag": "forge:ingots/lumium"
+      "tag": "c:ingots/lumium"
     },
     "X": {
       "item": "minecraft:powered_rail"
@@ -17,6 +17,5 @@
   "result": {
     "count": 6,
     "item": "thermal:lumium_powered_rail"
-  },
-  "show_notification": true
+  }
 }

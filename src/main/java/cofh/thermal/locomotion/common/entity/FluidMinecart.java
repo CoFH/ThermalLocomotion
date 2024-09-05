@@ -9,7 +9,6 @@ import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.lib.common.entity.AugmentableMinecart;
 import cofh.thermal.locomotion.common.inventory.FluidMinecartMenu;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -24,12 +23,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.ForgeCapabilities;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
@@ -45,8 +41,8 @@ import static cofh.thermal.core.common.config.ThermalCoreConfig.storageAugments;
 import static cofh.thermal.lib.util.ThermalAugmentRules.createAllowValidator;
 import static cofh.thermal.locomotion.init.registries.TLocEntities.FLUID_CART;
 import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_FLUID_CART;
-import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
-import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE;
+import static net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
+import static net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.SIMULATE;
 
 public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
 
@@ -90,20 +86,22 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
                     inputSlot.setItemStack(new ItemStack(Items.GLASS_BOTTLE));
                 }
             } else {
-                inputStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).ifPresent(c -> {
-                    int toFill = tank.fill(new FluidStack(c.getFluidInTank(0), BUCKET_VOLUME), SIMULATE);
+                var handler = inputStack.getCapability(Capabilities.FluidHandler.ITEM);
+                if (handler != null) {
+                    int toFill = tank.fill(new FluidStack(handler.getFluidInTank(0), BUCKET_VOLUME), SIMULATE);
                     if (toFill > 0) {
-                        tank.fill(c.drain(toFill, EXECUTE), EXECUTE);
-                        inputSlot.setItemStack(c.getContainer());
+                        tank.fill(handler.drain(toFill, EXECUTE), EXECUTE);
+                        inputSlot.setItemStack(handler.getContainer());
                     }
-                });
+                }
             }
         }
         if (!outputSlot.isEmpty()) {
-            outputSlot.getItemStack().getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).ifPresent(c -> {
-                tank.drain(c.fill(new FluidStack(tank.getFluidStack(), Math.min(tank.getAmount(), BUCKET_VOLUME)), EXECUTE), EXECUTE);
-                outputSlot.setItemStack(c.getContainer());
-            });
+            var handler = outputSlot.getItemStack().getCapability(Capabilities.FluidHandler.ITEM);
+            if (handler != null) {
+                tank.drain(handler.fill(new FluidStack(tank.getFluidStack(), Math.min(tank.getAmount(), BUCKET_VOLUME)), EXECUTE), EXECUTE);
+                outputSlot.setItemStack(handler.getContainer());
+            }
         }
     }
 
@@ -224,30 +222,6 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
 
         CompoundTag filterNBT = filter.write(new CompoundTag());
         filter = FilterRegistry.getFilter(getAttributeModString(augmentNBT, TAG_FILTER_TYPE), filterNBT, this);
-    }
-    // endregion
-
-    // region CAPABILITIES
-    protected LazyOptional<?> fluidCap = LazyOptional.empty();
-
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-
-        if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            if (!fluidCap.isPresent() && tank.getCapacity() > 0) {
-                fluidCap = LazyOptional.of(() -> tank);
-            }
-            return fluidCap.cast();
-        }
-        return super.getCapability(cap, side);
-    }
-
-    @Override
-    public void invalidateCaps() {
-
-        super.invalidateCaps();
-        fluidCap.invalidate();
     }
     // endregion
 }

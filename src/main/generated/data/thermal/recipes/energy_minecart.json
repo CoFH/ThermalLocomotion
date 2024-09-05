@@ -9,7 +9,7 @@
       "item": "thermal:energy_cell_frame"
     },
     "I": {
-      "tag": "forge:ingots/lead"
+      "tag": "c:ingots/lead"
     },
     "R": {
       "tag": "forge:storage_blocks/redstone"
@@ -22,6 +22,5 @@
   ],
   "result": {
     "item": "thermal:energy_minecart"
-  },
-  "show_notification": true
+  }
 }

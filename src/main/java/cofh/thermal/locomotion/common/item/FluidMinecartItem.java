@@ -25,7 +25,7 @@ import static cofh.core.util.helpers.FluidHelper.addPotionTooltip;
 import static cofh.lib.api.ContainerType.FLUID;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.lib.util.helpers.StringHelper.*;
-import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
+import static net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE;
 
 public class FluidMinecartItem extends AugmentableMinecartItem implements IFluidContainerItem, IColorableItem {
 
