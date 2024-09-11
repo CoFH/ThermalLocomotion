@@ -7,6 +7,7 @@ import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.lib.common.entity.AugmentableMinecart;
 import cofh.thermal.locomotion.common.inventory.EnergyMinecartMenu;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -21,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -191,6 +193,13 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
         float energyXferMod = baseMod * getAttributeModWithDefault(augmentNBT, TAG_AUGMENT_RF_XFER, 1.0F);
 
         energyStorage.applyModifiers(energyStorageMod, energyXferMod).setCreative(() -> creativeEnergy);
+    }
+    // endregion
+
+    // region CAPABILITIES
+    public IEnergyStorage getEnergyCapability(@Nullable Direction side) {
+
+        return energyStorage;
     }
     // endregion
 }

@@ -9,6 +9,7 @@ import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
 import cofh.thermal.lib.common.entity.AugmentableMinecart;
 import cofh.thermal.locomotion.common.inventory.FluidMinecartMenu;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -25,6 +26,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -222,6 +224,13 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
 
         CompoundTag filterNBT = filter.write(new CompoundTag());
         filter = FilterRegistry.getFilter(getAttributeModString(augmentNBT, TAG_FILTER_TYPE), filterNBT, this);
+    }
+    // endregion
+
+    // region CAPABILITIES
+    public IFluidHandler getFluidHandlerCapability(@Nullable Direction side) {
+
+        return tank;
     }
     // endregion
 }

@@ -20,6 +20,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 import static cofh.lib.util.constants.ModIds.ID_THERMAL_LOCOMOTION;
@@ -38,6 +39,7 @@ public class ThermalLocomotion {
 
         modEventBus.addListener(this::entityLayerSetup);
         modEventBus.addListener(this::entityRendererSetup);
+        modEventBus.addListener(this::capabilitySetup);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
 
@@ -65,6 +67,11 @@ public class ThermalLocomotion {
         event.registerEntityRenderer(UNDERWATER_CART.get(), UnderwaterMinecartRenderer::new);
         event.registerEntityRenderer(ENERGY_CART.get(), EnergyMinecartRenderer::new);
         event.registerEntityRenderer(FLUID_CART.get(), FluidMinecartRenderer::new);
+    }
+
+    private void capabilitySetup(RegisterCapabilitiesEvent event) {
+
+        TLocEntities.capabilitySetup(event);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

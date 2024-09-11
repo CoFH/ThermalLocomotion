@@ -6,6 +6,8 @@ import cofh.thermal.locomotion.common.entity.FluidMinecart;
 import cofh.thermal.locomotion.common.entity.UnderwaterMinecart;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
 import java.util.function.Supplier;
 
@@ -35,6 +37,12 @@ public class TLocEntities {
         toolsTab(202, registerTNTMinecart(ID_EARTH_TNT_CART, ID_EARTH_TNT, DetonateUtils::earth), getFlag(FLAG_ELEMENTAL_EXPLOSIVES));
         toolsTab(202, registerTNTMinecart(ID_PHYTO_TNT_CART, ID_PHYTO_TNT, DetonateUtils::phyto), getFlag(FLAG_PHYTOGRO_EXPLOSIVES));
         toolsTab(202, registerTNTMinecart(ID_NUKE_TNT_CART, ID_NUKE_TNT, DetonateUtils::nuke), getFlag(FLAG_NUCLEAR_EXPLOSIVES));
+    }
+
+    public static void capabilitySetup(RegisterCapabilitiesEvent event) {
+
+        event.registerEntity(Capabilities.FluidHandler.ENTITY, FLUID_CART.get(), FluidMinecart::getFluidHandlerCapability);
+        event.registerEntity(Capabilities.EnergyStorage.ENTITY, ENERGY_CART.get(), EnergyMinecart::getEnergyCapability);
     }
 
     public static final Supplier<EntityType<UnderwaterMinecart>> UNDERWATER_CART = ENTITIES.register(ID_UNDERWATER_CART, () -> EntityType.Builder.<UnderwaterMinecart>of(UnderwaterMinecart::new, MobCategory.MISC).sized(0.98F, 0.7F).build(ID_UNDERWATER_CART));
