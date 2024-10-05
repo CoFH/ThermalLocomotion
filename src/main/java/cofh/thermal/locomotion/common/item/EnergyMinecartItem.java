@@ -89,6 +89,12 @@ public class EnergyMinecartItem extends AugmentableMinecartItem implements IFlex
 
     // region IAugmentableItem
     @Override
+    public boolean hasFilterSlot() {
+
+        return false;
+    }
+
+    @Override
     public void updateAugmentState(ItemStack container, List<ItemStack> augments) {
 
         container.getOrCreateTag().put(TAG_PROPERTIES, new CompoundTag());

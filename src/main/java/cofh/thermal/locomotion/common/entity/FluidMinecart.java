@@ -7,6 +7,7 @@ import cofh.core.util.helpers.FluidHelper;
 import cofh.lib.common.fluid.FluidStorageCoFH;
 import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
+import cofh.thermal.core.common.config.ThermalCoreConfig;
 import cofh.thermal.lib.common.entity.AugmentableMinecart;
 import cofh.thermal.locomotion.common.inventory.FluidMinecartMenu;
 import net.minecraft.core.Direction;
@@ -50,7 +51,7 @@ import static net.minecraftforge.fluids.capability.IFluidHandler.FluidAction.SIM
 
 public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
 
-    public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_UPGRADE, TAG_AUGMENT_TYPE_FLUID, TAG_AUGMENT_TYPE_FILTER);
+    public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_FLUID, TAG_AUGMENT_TYPE_FILTER);
 
     public static final int BASE_CAPACITY = TANK_MEDIUM * 4;
 
@@ -66,7 +67,7 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
         inventory.addSlot(inputSlot);
         inventory.addSlot(outputSlot);
 
-        addAugmentSlots(storageAugments);
+        addAugmentSlots(ThermalCoreConfig.storageAugments, true, true);
     }
 
     public FluidMinecart(Level worldIn, double posX, double posY, double posZ) {
@@ -76,7 +77,7 @@ public class FluidMinecart extends AugmentableMinecart implements MenuProvider {
         inventory.addSlot(inputSlot);
         inventory.addSlot(outputSlot);
 
-        addAugmentSlots(storageAugments);
+        addAugmentSlots(ThermalCoreConfig.storageAugments, true, true);
     }
 
     protected void handleFluid() {

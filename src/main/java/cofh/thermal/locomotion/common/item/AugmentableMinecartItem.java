@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.IntSupplier;
 
+import static cofh.thermal.lib.util.ThermalAugmentRules.FILTER_VALIDATOR;
+import static cofh.thermal.lib.util.ThermalAugmentRules.UPGRADE_VALIDATOR;
+
 public class AugmentableMinecartItem extends MinecartItemCoFH implements IAugmentableItem {
 
     protected IntSupplier numSlots = () -> 0;
@@ -39,8 +42,31 @@ public class AugmentableMinecartItem extends MinecartItemCoFH implements IAugmen
     }
 
     @Override
-    public boolean validAugment(ItemStack augmentable, ItemStack augment, List<ItemStack> augments) {
+    public boolean hasUpgradeSlot() {
 
+        return true;
+    }
+
+    @Override
+    public boolean hasFilterSlot() {
+
+        return true;
+    }
+
+    @Override
+    public boolean validAugment(int index, ItemStack augmentable, ItemStack augment, List<ItemStack> augments) {
+
+        if (index == 0) {
+            if (hasUpgradeSlot()) {
+                return UPGRADE_VALIDATOR.test(augment, augments);
+            } else if (hasFilterSlot()) {
+                return FILTER_VALIDATOR.test(augment, augments);
+            }
+        } else if (index == 1) {
+            if (hasUpgradeSlot() && hasFilterSlot()) {
+                return FILTER_VALIDATOR.test(augment, augments);
+            }
+        }
         return augValidator.test(augment, augments);
     }
 

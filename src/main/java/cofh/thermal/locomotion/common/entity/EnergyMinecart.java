@@ -4,6 +4,7 @@ import cofh.core.util.helpers.AugmentDataHelper;
 import cofh.lib.common.energy.EnergyStorageCoFH;
 import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.lib.util.Utils;
+import cofh.thermal.core.common.config.ThermalCoreConfig;
 import cofh.thermal.lib.common.entity.AugmentableMinecart;
 import cofh.thermal.lib.util.ThermalEnergyHelper;
 import cofh.thermal.locomotion.common.inventory.EnergyMinecartMenu;
@@ -32,7 +33,6 @@ import java.util.function.Predicate;
 import static cofh.core.util.helpers.AugmentableHelper.getAttributeModWithDefault;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.config.ThermalCoreConfig.storageAugments;
 import static cofh.thermal.lib.util.ThermalAugmentRules.ENERGY_STORAGE_VALIDATOR;
 import static cofh.thermal.locomotion.init.registries.TLocEntities.ENERGY_CART;
 import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_ENERGY_CART;
@@ -56,7 +56,7 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
 
         this.entityData.set(ENERGY_STORED, 0);
 
-        addAugmentSlots(storageAugments);
+        addAugmentSlots(ThermalCoreConfig.storageAugmentsNoFilter, true, true);
     }
 
     public EnergyMinecart(Level worldIn, double posX, double posY, double posZ) {
@@ -68,7 +68,7 @@ public class EnergyMinecart extends AugmentableMinecart implements MenuProvider 
 
         this.entityData.set(ENERGY_STORED, 0);
 
-        addAugmentSlots(storageAugments);
+        addAugmentSlots(ThermalCoreConfig.storageAugmentsNoFilter, true, true);
     }
 
     protected void handleEnergy() {

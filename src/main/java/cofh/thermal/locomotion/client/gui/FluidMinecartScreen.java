@@ -36,7 +36,7 @@ public class FluidMinecartScreen extends ContainerScreenCoFH<FluidMinecartMenu> 
         super.init();
 
         if (menu.getAugmentSlots().size() > 0) {
-            addPanel(new AugmentPanel(this, menu::getNumAugmentSlots, menu.getAugmentSlots()));
+            addPanel(new AugmentPanel(this, menu::getNumAugmentSlots, menu.getAugmentSlots(), true, true));
         }
         addElement(createMediumFluidStorage(this, 80, 22, menu.cart.getTank()));
 
