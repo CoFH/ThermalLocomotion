@@ -42,7 +42,6 @@ import static cofh.core.util.helpers.AugmentableHelper.getAttributeModWithDefaul
 import static cofh.lib.util.Constants.*;
 import static cofh.lib.util.constants.NBTTags.*;
 import static cofh.thermal.core.ThermalCore.ITEMS;
-import static cofh.thermal.core.common.config.ThermalCoreConfig.storageAugments;
 import static cofh.thermal.lib.util.ThermalAugmentRules.createAllowValidator;
 import static cofh.thermal.locomotion.init.registries.TLocEntities.FLUID_CART;
 import static cofh.thermal.locomotion.init.registries.TLocIDs.ID_FLUID_CART;
